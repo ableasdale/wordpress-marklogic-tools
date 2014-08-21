@@ -30,6 +30,10 @@ declare function wp-export-data:get-categories() {
   wp-export-data:get-channel()/wp:category
 };
 
+declare function wp-export-data:get-tags() {
+  wp-export-data:get-channel()/wp:tag
+};
+
 declare function wp-export-data:get-items() {
   wp-export-data:get-channel()/item
 };
