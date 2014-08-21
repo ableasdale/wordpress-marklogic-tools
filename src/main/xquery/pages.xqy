@@ -12,12 +12,13 @@ view-tools:create-html-page(
         <h3>TODO filter by all dates, bulk actions etc...</h3>
         <div id="pages">
             <table>
-                {view-tools:create-thead-element(("Title", "Status", "Author", "Comments", "Date"))}
+                {view-tools:create-thead-element(("ID, "Title", "Status", "Author", "Comments", "Date"))}
                 <!-- TODO - and parameterise this -->
                 <tbody>
                     {
                         for $x in wp-export-data:get-pages()
                         return element tr {
+                            element td {string($x/wp:post_id)}
                             element td {string($x/title)},
                             element td {string($x/wp:status)},                              
                            (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)

@@ -11,19 +11,20 @@ view-tools:create-html-page(
         <h2>Posts</h2>
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
         <div id="posts">
-            <table>
-                {view-tools:create-thead-element(("Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
+            <table border="1">
+                {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
                 <!-- TODO - and parameterise this -->
                 <tbody>
                     {
                         for $x in wp-export-data:get-posts()
                         return element tr {
+                            element td {element a { attribute href {fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id))}}, string($x/wp:post_id)},
                             element td {string($x/title)},
                             element td {string($x/wp:status)},                              
                            (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                             element td {string($x/dc:creator)},
                             (: TODO - can you put in multiple categories :)
-                            element td {string($x/category)},
+                            element td {let $strs := for $i in $x/category return $i/string() return fn:string-join($strs, ", ")},
                             element td {"TODO - need to export a WP db with tags"},
                             element td {fn:count($x/wp:comment)},
                             element td {string($x/wp:post_date)}
