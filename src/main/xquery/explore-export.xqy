@@ -6,7 +6,7 @@ declare namespace wfw = "http://wellformedweb.org/CommentAPI/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
-declare variable $import as element(channel) := xdmp:document-get("E:\wordpress-marklogic\sample-exports\export-from-default-install-wp4b4-with-6-users-and-basic-content.xml")/rss/channel;
+declare variable $import as element(channel) := xdmp:document-get("E:\work\wordpress-marklogic-tools\sample-exports\export-from-default-install-wp4b4-with-6-users-basic-content-tags-and-categories.xml")/rss/channel;
 
 declare function local:get-channel() {
   $import
@@ -18,6 +18,10 @@ declare function local:get-authors() {
 
 declare function local:get-terms() {
   local:get-channel()/wp:term
+};
+
+declare function local:get-categories() {
+  local:get-channel()/wp:category
 };
 
 declare function local:get-items() {
@@ -46,6 +50,5 @@ local:get-channel() :)
 
 (: local:get-wp-post-ids() :)
 
-local:get-wp-post-by-id(2) 
-
+local:get-channel()
 
