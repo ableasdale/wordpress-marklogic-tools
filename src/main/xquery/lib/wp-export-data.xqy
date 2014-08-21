@@ -12,10 +12,10 @@ declare namespace wfw = "http://wellformedweb.org/CommentAPI/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
-declare variable $import as element(channel) := xdmp:document-get("E:\work\wordpress-marklogic-tools\sample-exports\export-from-default-install-wp4b4-with-6-users-basic-content-tags-and-categories.xml")/rss/channel;
+import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
 declare function wp-export-data:get-channel() {
-  $import
+  $consts:IMPORT
 };
 
 declare function wp-export-data:get-authors() {
