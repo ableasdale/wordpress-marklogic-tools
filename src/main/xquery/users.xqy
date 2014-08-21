@@ -28,13 +28,3 @@ view-tools:create-html-page(
             </table>
         </div>
     </div>)
-
-
-(:
-<wp:author_id>1</wp:author_id>
-    <wp:author_login>wp-admin</wp:author_login>
-    <wp:author_email>admin@example.com</wp:author_email>
-    <wp:author_display_name>wp-admin</wp:author_display_name>
-    <wp:author_first_name/>
-    <wp:author_last_name/>
-:)
