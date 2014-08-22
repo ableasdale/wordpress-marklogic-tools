@@ -14,9 +14,9 @@ view-tools:create-wp-admin-html-page("Users", (),
                 {
                     for $x in ml-wp-data:get-authors()
                     return element tr {
-                        element td {string($x/wp:author_login)},
-                        element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)},
-                        element td {string($x/wp:author_email)},
+                        element td {string($x//wp:author_login)},
+                        element td {string($x//wp:author_first_name) || " " || string($x/wp:author_last_name)},
+                        element td {string($x//wp:author_email)},
                         element td {"TODO"},
                         element td {"TODO"}
                     }   
