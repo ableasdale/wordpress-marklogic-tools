@@ -33,10 +33,10 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                       <h3 class="panel-title">At a Glance</h3>
                     </div>
                     <div class="panel-body">
-                        <p><a href="/posts.xqy">{fn:count(ml-wp-data:get-posts())} posts</a></p>
+                        <p><a href="/posts.xqy"><span class="badge">{fn:count(ml-wp-data:get-posts())}</span> Posts</a></p>
                         <p>TODO - how many published/pending etc..</p>     
-                        <p><a href="/pages.xqy">{fn:count(ml-wp-data:get-pages())} pages</a></p>
-                        <p>{fn:count(ml-wp-data:get-comments())} comments</p>
+                        <p><a href="/pages.xqy"><span class="badge">{fn:count(ml-wp-data:get-pages())}</span> Pages</a></p>
+                        <p><span class="badge">{fn:count(ml-wp-data:get-comments())}</span> comments</p>
                     </div>
                 </div>
             </div>

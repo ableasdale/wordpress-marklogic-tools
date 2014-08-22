@@ -2,6 +2,8 @@ xquery version "1.0-ml";
 
 module namespace view-tools = "http://www.xmlmachines.com/view-tools";
 
+import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
+
 declare function view-tools:create-html-page($head, $content) {
 xdmp:set-response-content-type("text/html; charset=utf-8"),
 ("<!DOCTYPE html>",
@@ -33,9 +35,14 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
     <title>{$title}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />    
 	{$additional-content}
 </head>
 )
+};
+
+declare function view-tools:get-export-directories() { 
+    for $i in $consts:DIRECTORIES return xdmp:filesystem-directory($i)
 };
 
 declare function view-tools:get-tiny-mce-js(){
@@ -101,7 +108,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Import</a></li>
+                                <li><a href="/import.xqy">Import</a></li>
                                 <li><a href="/export.xqy">Export to Wordpress</a></li>
                                 <!-- li class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>

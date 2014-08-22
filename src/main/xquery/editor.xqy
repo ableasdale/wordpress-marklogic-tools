@@ -21,7 +21,18 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
         <div class="page-header">
             <form class="form-horizontal" action="/update.xqy" method="post">
                 
-                <div class="form-group">
+                
+                <div class="input-group">
+                    <span class="input-group-addon">Title</span>
+                    {element input {
+                            attribute class {"form-control"},
+                            attribute name {"title"},
+                            attribute value {$item/title/string()}
+                        }             
+                    }                    
+                </div>
+                
+                <!-- div class="form-group">
                     <label for="title" class="control-label col-xs-2">Title</label>
                     <div class="col-xs-10">
                         {element input {
@@ -31,7 +42,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                             }             
                         }         
                     </div>
-                </div>
+                </div -->
                
                 <p>TODO: No permalink impl, No Media Library integration, No HTML Source view</p>
     
