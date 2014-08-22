@@ -9,18 +9,11 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
 
-xdmp:set-response-content-type("text/html; charset=utf-8"),
-("<!DOCTYPE html>",
-<html>
-<head>
-    <script src="https://tinymce.cachefly.net/4.1/tinymce.min.js">{" "}</script>
-    <script language="javascript" type="text/javascript">
-        <![CDATA[tinymce.init({selector:'textarea'});]]>
-    </script>
-</head>
 
-<body>
-    <textarea>{wp-export-data:get-wp-post-by-id($id)/content:encoded}</textarea>    
-</body>
-</html>
+view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
+
+    (
+        <textarea>{wp-export-data:get-wp-post-by-id($id)/content:encoded}</textarea>,
+        <button>Save Changes</button>
+    )
 )

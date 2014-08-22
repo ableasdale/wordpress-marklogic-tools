@@ -7,7 +7,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 
 
-view-tools:create-wp-admin-html-page("Users", 
+view-tools:create-wp-admin-html-page("Users", (),
     <div id="users">
         <table>
             {view-tools:create-thead-element(("Users", "Name", "Email", "Role", "Posts"))}

@@ -6,7 +6,7 @@ declare namespace dc = "http://purl.org/dc/elements/1.1/";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
-view-tools:create-wp-admin-html-page("Posts", 
+view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts">
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
         <table border="1">

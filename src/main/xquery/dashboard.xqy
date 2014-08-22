@@ -10,7 +10,7 @@ declare namespace wfw = "http://wellformedweb.org/CommentAPI/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
-view-tools:create-wp-admin-html-page("Dashboard", 
+view-tools:create-wp-admin-html-page("Dashboard", (), 
     <div id="at-a-glance">
         <h3>At a glance widget (from dashboard)</h3>
         <p><a href="/posts.xqy">{fn:count(ml-wp-data:get-posts())} posts</a></p>

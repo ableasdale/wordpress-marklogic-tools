@@ -15,15 +15,24 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 </html>
 )};
 
-declare function view-tools:create-wp-admin-html-head() {
+declare function view-tools:create-wp-admin-html-head($title as xs:string, $additional-content) {
 (
+    <title>{$title}</title>,
     <link rel="stylesheet" href="css/base.css" />,
 	<link rel="stylesheet" href="css/skeleton.css" />,
-	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="css/layout.css" />,
+	$additional-content
 )
 };
 
-declare function view-tools:create-wp-admin-html-page($title as xs:string, $content) { 
+declare function view-tools:get-tiny-mce-js(){
+    (<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js">{" "}</script>,
+    <script language="javascript" type="text/javascript">
+        <![CDATA[tinymce.init({selector:'textarea'});]]>
+    </script>)
+};
+
+declare function view-tools:create-wp-admin-html-page($title as xs:string, $head, $content) { 
     let $pagebody := (
     <div class="container">
 		<div class="sixteen columns">
@@ -33,7 +42,7 @@ declare function view-tools:create-wp-admin-html-page($title as xs:string, $cont
         </div>      
     </div>
     )
-    return view-tools:create-html-page(view-tools:create-wp-admin-html-head(), $pagebody)
+    return view-tools:create-html-page(view-tools:create-wp-admin-html-head($title, $head), $pagebody)
 };
 
 declare function view-tools:wp-admin-navigation() as element(ul) {
