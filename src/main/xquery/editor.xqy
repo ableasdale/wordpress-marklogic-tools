@@ -11,8 +11,12 @@ declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:in
 declare variable $item as element(item) := wp-export-data:get-wp-post-by-id($id);
 
 view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
-
-    (   <div id="editor">
+(   
+<div id="editor">
+    <div class="alert alert-info" role="alert">
+        <strong>Notice</strong> You are currently editing a post with the status of <strong>{$item/wp:status/string()}</strong>, with the post id #{$id}: "{$item/title/string()}"
+    </div>
+      
             <form>
             {element input {
                     attribute name {"title"},
