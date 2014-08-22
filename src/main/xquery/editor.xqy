@@ -4,29 +4,83 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 
 
-import module namespace wp-export-data = "http://www.xmlmachines.com/wp-export-data" at "/lib/wp-export-data.xqy";
+import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
-declare variable $item as element(item) := wp-export-data:get-wp-post-by-id($id);
+declare variable $item as element(item) := ml-wp-data:get-wp-post-by-id($id)/node();
+
+(: TODO - skanky handling if you don't pass in an id - trigger a nice error message :)
 
 view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
-(   
-<div id="editor">
-    <div class="alert alert-info" role="alert">
-        <strong>Notice</strong> You are currently editing a post with the status of <strong>{$item/wp:status/string()}</strong>, with the post id #{$id}: "{$item/title/string()}"
-    </div>
-      
-            <form>
-            {element input {
-                    attribute name {"title"},
-                    attribute value {$item/title/string()}
-                }             
-            }
-            <p>TODO: No permalink impl</p>
-            <textarea>{$item/content:encoded}</textarea>
-            <button>Save Changes</button>
-            </form>
+    <div id="editor">
+        <div class="alert alert-info" role="alert">
+            <strong>Notice</strong> You are currently editing a post with the status of <strong>{$item/wp:status/string()}</strong>, with the post id #{$id}: "{$item/title/string()}"
         </div>
-    )
+        
+        <div class="page-header">
+            <form class="form-horizontal" action="/update.xqy" method="post">
+                
+                <div class="form-group">
+                    <label for="title" class="control-label col-xs-2">Title</label>
+                    <div class="col-xs-10">
+                        {element input {
+                                attribute class {"form-control"},
+                                attribute name {"title"},
+                                attribute value {$item/title/string()}
+                            }             
+                        }         
+                    </div>
+                </div>
+               
+                <p>TODO: No permalink impl, No Media Library integration, No HTML Source view</p>
+    
+                <div class="form-group">
+                    <textarea name="article">{$item/content:encoded}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <!-- "col-xs-offset-2 col-xs-10" -->
+                    <div class="col-xs-10">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+                {element input {
+                    attribute type {"hidden"},
+                    attribute name {"uri"},
+                    attribute value {xdmp:node-uri($item)}
+                }}
+            </form>
+                
+    
+    
+    
+                <!-- EXAMPLES form class="form-horizontal">
+                
+
+        
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-xs-2">Password</label>
+            <div class="col-xs-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <div class="checkbox">
+                    <label><input type="checkbox" /> Remember me</label>
+                </div>
+            </div>
+        </div>
+        
+        
+    </form -->
+    
+    
+    
+    
+    
+        </div>
+    </div>
 )

@@ -41,7 +41,7 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
 declare function view-tools:get-tiny-mce-js(){
     (<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js">{" "}</script>,
     <script language="javascript" type="text/javascript">
-        <![CDATA[tinymce.init({selector:'textarea'});]]>
+        <![CDATA[tinymce.init({selector : 'textarea', height : 500 });]]>
     </script>)
 };
 

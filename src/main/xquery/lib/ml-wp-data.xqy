@@ -50,6 +50,7 @@ declare function ml-wp-data:get-posts() {
     )
 };
 
+(: TODO - the two xpath fns below need to be sorted for calls to data in ML rather than from the WP Exported XML file :)
 declare function ml-wp-data:get-comments() {
   ml-wp-data:get-items()//wp:comment 
 };
@@ -58,7 +59,10 @@ declare function ml-wp-data:get-wp-post-ids() as xs:integer* {
   ml-wp-data:get-items()/wp:post_id
 };
 
-(: pages and posts both have a wp:post_id - this will grab either :)
-declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) {
-  ml-wp-data:get-items()/wp:post_id[. = $id]/..
+(: pages and posts both have a wp:post_id - this will grab either - NOTE this returns a document-node not an element :)
+declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-node() {
+  (: ml-wp-data:get-items()/wp:post_id[. = $id]/.. :)
+  cts:search(fn:doc(), 
+        cts:and-query(( cts:element-value-query(xs:QName("wp:post_id"), string($id)), cts:collection-query(("items")) ))              
+    )
 };

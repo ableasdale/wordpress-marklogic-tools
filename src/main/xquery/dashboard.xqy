@@ -10,8 +10,22 @@ declare namespace wfw = "http://wellformedweb.org/CommentAPI/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
+declare variable $message := xdmp:get-request-field("msg");
+
 view-tools:create-wp-admin-html-page("Dashboard", (),        
-    <div id="dashboard">
+    <div id="dashboard">        
+        {if (fn:string-length($message) > 0)
+        then (
+            (: TODO - refactor this out into the view module - it can definitely be reused :)
+            element div {attribute class {"page-header"},
+                element div {
+                    attribute class {"alert alert-success"},
+                    attribute role {"alert"},
+                        element strong {"Document updated"}, 
+                        " TODO - provide more information about what was just updated"                
+                }
+            })
+        else ()}
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default">
