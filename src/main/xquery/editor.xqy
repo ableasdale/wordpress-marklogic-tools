@@ -8,12 +8,21 @@ import module namespace wp-export-data = "http://www.xmlmachines.com/wp-export-d
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
-
+declare variable $item as element(item) := wp-export-data:get-wp-post-by-id($id);
 
 view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
 
-    (
-        <textarea>{wp-export-data:get-wp-post-by-id($id)/content:encoded}</textarea>,
-        <button>Save Changes</button>
+    (   <div id="editor">
+            <form>
+            {element input {
+                    attribute name {"title"},
+                    attribute value {$item/title/string()}
+                }             
+            }
+            <p>TODO: No permalink impl</p>
+            <textarea>{$item/content:encoded}</textarea>
+            <button>Save Changes</button>
+            </form>
+        </div>
     )
 )

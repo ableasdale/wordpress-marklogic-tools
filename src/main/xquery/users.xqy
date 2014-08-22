@@ -9,7 +9,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 view-tools:create-wp-admin-html-page("Users", (),
     <div id="users">
-        <table>
+        <table class="table table-striped">
             {view-tools:create-thead-element(("Users", "Name", "Email", "Role", "Posts"))}
             <!-- TODO - and parameterise this -->
             <tbody>
@@ -23,7 +23,6 @@ view-tools:create-wp-admin-html-page("Users", (),
                         element td {"TODO"}
                     }   
                 }
-            </tbody>
-            
+            </tbody>            
         </table>
     </div>)
