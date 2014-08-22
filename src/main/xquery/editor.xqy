@@ -53,6 +53,10 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
             </form>
                 
     
+            <!-- form class="well form-search">
+        <input type="text" class="input-medium search-query"/>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form -->
     
     
                 <!-- EXAMPLES form class="form-horizontal">

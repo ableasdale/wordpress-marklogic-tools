@@ -9,7 +9,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="page-header">
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
             <!-- TODO - and parameterise this -->
             <tbody>

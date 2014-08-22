@@ -19,7 +19,7 @@ declare function ml-wp-data:get-channel() {
 }; :)
 
 declare function ml-wp-data:get-authors() {
-  fn:collection("author")
+  fn:collection("authors")
 };
 
 declare function ml-wp-data:get-terms() {

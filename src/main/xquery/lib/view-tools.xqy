@@ -41,8 +41,22 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
 declare function view-tools:get-tiny-mce-js(){
     (<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js">{" "}</script>,
     <script language="javascript" type="text/javascript">
-        <![CDATA[tinymce.init({selector : 'textarea', height : 500 });]]>
+        <![CDATA[tinymce.init({
+            selector : 'textarea', 
+            
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "template paste textcolor colorpicker textpattern"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            
+            image_advtab: true,
+            
+            height : 500 });]]>
     </script>)
+    (: toolbar2: "print preview media | forecolor backcolor emoticons", :)
 };
 
 declare function view-tools:create-wp-admin-html-page($title as xs:string, $head, $content) { 
@@ -82,21 +96,19 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <li><a href="/pages.xqy">Pages</a></li>
                         <li><a href="#comments">Comments</a></li>
                         <li><a href="/users.xqy">Users</a></li>
-                        <li><a href="#tools">Tools</a></li>
+                        <!-- li><a href="#tools">Tools</a></li -->
                         
-                        <!-- li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-                                    <span class="caret"></span></a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
+                                <li><a href="#">Import</a></li>
+                                <li><a href="/export.xqy">Export to Wordpress</a></li>
+                                <!-- li class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
+                                <li><a href="#">One more separated link</a></li -->
                             </ul>
-                        </li -->
+                        </li>
                     </ul>
                 </div>
                 
