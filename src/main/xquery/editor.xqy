@@ -14,10 +14,9 @@ declare variable $item as element(item) := ml-wp-data:get-wp-post-by-id($id)/nod
 
 view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
     <div id="editor">
-        <div class="alert alert-info" role="alert">
-            <strong>Notice</strong> You are currently editing a post with the status of <strong>{$item/wp:status/string()}</strong>, with the post id #{$id}: "{$item/title/string()}"
-        </div>
-        
+        {view-tools:info-notification(
+            ( element strong {"Notice "}, "You are currently editing a post with the status of ", element strong {$item/wp:status/string()}, " with the post id ", fn:concat("#", $id, ":&quot;", $item/title/string(),"&quot;")    ), false() )}
+            
         <div class="page-header">
             <form class="form-horizontal" action="/update.xqy" method="post">
                 

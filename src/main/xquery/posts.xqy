@@ -11,21 +11,21 @@ view-tools:create-wp-admin-html-page("Posts", (),
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
-            <!-- TODO - and parameterise this -->
+            <!-- TODO - and parameterise this  -->
             <tbody>
                 {
                     for $x in ml-wp-data:get-posts()/*
                     order by number($x/wp:post_id) ascending
                     return element tr {
-                        element td {element a { attribute href {fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id))}}, string($x/wp:post_id)},
+                        element td {view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
-                        element td {string($x/dc:creator)},
+                        element td {ml-wp-data:get-author-first-and-last-name-from-username(string($x/dc:creator))},
                         (: TODO - can you put in multiple categories :)
                         element td {let $strs := for $i in $x/category return $i/string() return fn:string-join($strs, ", ")},
                         element td {"TODO - need to export a WP db with tags"},
-                        element td {fn:count($x/wp:comment)},
+                        element td {view-tools:create-badge-link(fn:concat("/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}
                     }   
                 }

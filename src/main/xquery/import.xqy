@@ -49,7 +49,7 @@ view-tools:create-wp-admin-html-page("Import", (),
                             {for $fh in view-tools:get-export-directories()/dir:entry
                             return
                                 element a {
-                                    attribute href {$fh/dir:pathname/text()},
+                                    attribute href {concat("/import-wp-export-file.xqy?fname=", fn:encode-for-uri($fh/dir:pathname/text()))},
                                     attribute class { "list-group-item" },
                                     ($fh/dir:filename/text() || " " || "(" || fn:round(xs:unsignedLong($fh/dir:content-length/text()) div 1024) || " Kb)")
                                 }

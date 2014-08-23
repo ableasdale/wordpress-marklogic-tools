@@ -15,7 +15,9 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
 declare function wp-export-data:get-channel() {
-  $consts:IMPORT
+    if(not(empty(xdmp:get-server-field("filename"))))
+    then(xdmp:get-server-field("filename"))
+    else($consts:IMPORT)
 };
 
 declare function wp-export-data:get-authors() {

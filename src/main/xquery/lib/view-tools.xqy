@@ -136,7 +136,54 @@ declare function view-tools:wp-admin-navigation() as element(div) {
     </ul> :)
 };
 
-declare function view-tools:create-thead-element($headers as xs:string*) as element(thead){
+declare private function view-tools:alert-user($level, $message, $is-dismissible) {
+if ($is-dismissible)
+then (
+    element div {
+            attribute class {("alert " || $level || " alert-dismissible" )},
+            attribute role {"alert"},
+            element button {
+                attribute class {"close"}, 
+                attribute data-dismiss {"alert"}, 
+                element span {
+                    attribute aria-hidden {"true"}, "&times;"}, 
+                    element span {attribute class {"sr-only"}, "Close"}},                
+            $message
+    }
+)
+else (
+    element div {
+        attribute class {("alert " || $level)},
+        attribute role {"alert"},
+            $message                
+    }
+)
+};
+
+(: 4 classes of visual alert to notify user :)
+
+declare function view-tools:success-notification($message, $is-dismissible as xs:boolean) {
+    view-tools:alert-user("alert-success", $message, $is-dismissible)
+};
+
+declare function view-tools:info-notification($message, $is-dismissible as xs:boolean) {
+    view-tools:alert-user("alert-info", $message, $is-dismissible)
+};
+
+declare function view-tools:warning-notification($message, $is-dismissible as xs:boolean) {
+    view-tools:alert-user("alert-warning", $message, $is-dismissible)
+};
+
+declare function view-tools:danger-notification($message, $is-dismissible as xs:boolean) {
+    view-tools:alert-user("alert-danger", $message, $is-dismissible)
+};
+  
+  
+declare function view-tools:create-badge-link($href as xs:string, $linktext as xs:string) as element(a) {
+    element a { attribute href {$href}, element span {attribute class {"badge"}, $linktext}}
+};
+
+declare function view-tools:create-thead-element($headers as xs:string*) as element(thead) {
     element thead {
         element tr {
             for $header in $headers
@@ -144,3 +191,4 @@ declare function view-tools:create-thead-element($headers as xs:string*) as elem
         }
     }
 };
+

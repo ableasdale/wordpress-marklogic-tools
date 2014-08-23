@@ -66,3 +66,18 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
         cts:and-query(( cts:element-value-query(xs:QName("wp:post_id"), string($id)), cts:collection-query(("items")) ))              
     )
 };
+
+declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node() {
+    cts:search(fn:doc(), 
+        cts:and-query(( cts:element-value-query(xs:QName("wp:author_login"), string($username)), cts:collection-query(("authors")) ))              
+    )
+};
+
+declare function ml-wp-data:get-author-first-and-last-name-from-username($name as xs:string) as xs:string {
+    let $x := ml-wp-data:get-author-by-username($name)
+    return string($x//wp:author_first_name) || " " || string($x/wp:author_last_name)
+};
+
+declare function ml-wp-data:get-user-first-and-last-name-from-username($name as xs:string) as xs:string {
+    ml-wp-data:get-author-first-and-last-name-from-username($name)
+};

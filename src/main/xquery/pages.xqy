@@ -17,7 +17,7 @@ view-tools:create-wp-admin-html-page("Pages", (),
                     for $x in ml-wp-data:get-pages()/*
                     order by number($x/wp:post_id) ascending
                     return element tr {
-                        element td {element a { attribute href {fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id))}}, string($x/wp:post_id)},
+                        element td {view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
