@@ -187,7 +187,7 @@ declare function view-tools:create-thead-element($headers as xs:string*) as elem
     element thead {
         element tr {
             for $header in $headers
-            return element th {$header}
+            return element th {attribute class {"text-center"}, $header}
         }
     }
 };

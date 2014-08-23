@@ -17,7 +17,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                     for $x in ml-wp-data:get-posts()/*
                     order by number($x/wp:post_id) ascending
                     return element tr {
-                        element td {view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
@@ -25,7 +25,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         (: TODO - can you put in multiple categories :)
                         element td {let $strs := for $i in $x/category return $i/string() return fn:string-join($strs, ", ")},
                         element td {"TODO - need to export a WP db with tags"},
-                        element td {view-tools:create-badge-link(fn:concat("/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}
                     }   
                 }
