@@ -18,7 +18,7 @@ view-tools:create-wp-admin-html-page("Users", (),
                         element td {string($x//wp:author_first_name) || " " || string($x/wp:author_last_name)},
                         element td {string($x//wp:author_email)},
                         element td {"TODO"},
-                        element td {"TODO"}
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("#?id=","TODO-FIXME"), string(fn:count(ml-wp-data:get-posts-by-authorname(string($x//wp:author_login)))))}  
                     }   
                 }
             </tbody>            

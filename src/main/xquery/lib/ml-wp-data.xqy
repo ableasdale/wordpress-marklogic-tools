@@ -78,6 +78,12 @@ declare function ml-wp-data:get-author-first-and-last-name-from-username($name a
     return string($x//wp:author_first_name) || " " || string($x/wp:author_last_name)
 };
 
+declare function ml-wp-data:get-posts-by-authorname($username as xs:string) {
+  cts:search(doc()/item, 
+        cts:and-query(( cts:element-value-query(xs:QName("dc:creator"), string($username)), cts:collection-query(("items")) ))              
+    )
+};
+
 declare function ml-wp-data:get-user-first-and-last-name-from-username($name as xs:string) as xs:string {
     ml-wp-data:get-author-first-and-last-name-from-username($name)
 };
