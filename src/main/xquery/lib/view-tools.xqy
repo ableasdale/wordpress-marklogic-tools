@@ -91,7 +91,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">WordPress/MarkLogic Tools</a>
+                    <a class="navbar-brand" href="#">MarkPress</a>
                 </div>
                 
                 <div class="navbar-collapse collapse">

@@ -22,9 +22,12 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {ml-wp-data:get-author-first-and-last-name-from-username(string($x/dc:creator))},
-                        (: TODO - can you put in multiple categories :)
-                        element td {let $strs := for $i in $x/category return $i/string() return fn:string-join($strs, ", ")},
-                        element td {"TODO - need to export a WP db with tags"},
+                        element td {let $strs := for $i in $x/category[@domain = "category"] return $i/string() return fn:string-join($strs, ", ")},
+                        element td {attribute class {"tags"}, 
+                            let $strs := for $i in $x/category[@domain = "post_tag"] 
+                            return view-tools:create-badge-link( fn:concat("/editor.xqy?id=", $i/string()), $i/string()) 
+                            return $strs
+                        },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}
                     }   
@@ -32,6 +35,17 @@ view-tools:create-wp-admin-html-page("Posts", (),
             </tbody>
         </table>
     </div>)
+
+
+
+
+
+
+
+
+
+
+
 
 (:
 

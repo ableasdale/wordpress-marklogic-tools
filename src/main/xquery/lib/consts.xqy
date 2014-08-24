@@ -14,4 +14,9 @@ declare variable $IMPORT as element(channel) := xdmp:document-get("E:\wordpress-
 
 (: declare variable $IMPORT as element(channel) := xdmp:document-get("E:\work\wordpress-marklogic-tools\sample-exports\export-from-default-install-wp4b4-with-6-users-basic-content-tags-and-categories.xml")/rss/channel; :) 
 
+(:
 declare variable $DIRECTORIES as xs:string+ := ("E:\wordpress-marklogic\", "E:\work\wordpress-marklogic-tools\sample-exports");
+:)
+
+
+declare variable $DIRECTORIES as xs:string+ := ("/tmp/wordpress-marklogic-tools/sample-exports");

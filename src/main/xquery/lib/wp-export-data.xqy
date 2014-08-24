@@ -14,9 +14,11 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
+(: TODO - does this keep getting the doc? - otherwise set as server field perhaps and keep returning that :)
+
 declare function wp-export-data:get-channel() {
     if(not(empty(xdmp:get-server-field("filename"))))
-    then(xdmp:get-server-field("filename"))
+    then(xdmp:document-get(xdmp:get-server-field("filename"))/rss/channel)
     else($consts:IMPORT)
 };
 

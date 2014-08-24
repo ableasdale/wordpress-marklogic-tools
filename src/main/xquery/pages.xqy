@@ -17,13 +17,12 @@ view-tools:create-wp-admin-html-page("Pages", (),
                     for $x in ml-wp-data:get-pages()/*
                     order by number($x/wp:post_id) ascending
                     return element tr {
-                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id)) },
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {string($x/dc:creator)},
-                        (: TODO - can you put in multiple categories :)
-                        element td {fn:count($x/wp:comment)},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/editor.xqy?id=", string(fn:count($x/wp:comment))), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}
                     }   
                 }
