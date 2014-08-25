@@ -9,7 +9,6 @@ view-tools:create-wp-admin-html-page("Users", (),
     <div id="users">
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("Users", "Name", "Email", "Role", "Posts"))}
-            <!-- TODO - and parameterise this -->
             <tbody>
                 {
                     for $x in ml-wp-data:get-authors()
@@ -23,4 +22,5 @@ view-tools:create-wp-admin-html-page("Users", (),
                 }
             </tbody>            
         </table>
-    </div>)
+    </div>
+)

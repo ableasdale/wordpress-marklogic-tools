@@ -52,7 +52,9 @@ declare function ml-wp-data:get-posts() {
 
 (: TODO - the two xpath fns below need to be sorted for calls to data in ML rather than from the WP Exported XML file :)
 declare function ml-wp-data:get-comments() {
-  ml-wp-data:get-items()//wp:comment 
+    cts:search(fn:doc(), 
+        cts:and-query(( cts:element-query(xs:QName("wp:comment"), cts:and-query(())), cts:collection-query(("items")) ))              
+    )//wp:comment
 };
 
 declare function ml-wp-data:get-wp-post-ids() as xs:integer* {

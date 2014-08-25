@@ -101,7 +101,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <li><a href="/posts.xqy">Posts</a></li>
                         <li><a href="#media">Media</a></li>
                         <li><a href="/pages.xqy">Pages</a></li>
-                        <li><a href="#comments">Comments</a></li>
+                        <li><a href="/comments.xqy">Comments</a></li>
                         <li><a href="/users.xqy">Users</a></li>
                         <!-- li><a href="#tools">Tools</a></li -->
                         
