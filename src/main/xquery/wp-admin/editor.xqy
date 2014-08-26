@@ -18,7 +18,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
             ( element strong {"Notice "}, "You are currently editing a post with the status of ", element strong {$item/wp:status/string()}, " with the post id ", fn:concat("#", $id, ":&quot;", $item/title/string(),"&quot;")    ), false() )}
             
         <div class="page-header">
-            <form class="form-horizontal" action="/update.xqy" method="post">
+            <form class="form-horizontal" action="/wp-admin/update.xqy" method="post">
                 
                 
                 <div class="input-group">

@@ -35,7 +35,7 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
     <title>{$title}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="/css/styles.css" />    
+    <link rel="stylesheet" href="/wp-admin/css/styles.css" />    
 	{$additional-content}
 </head>
 )
@@ -97,19 +97,19 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <!-- TODO - add class="active" to active page -->
-                        <li><a href="/dashboard.xqy">Dashboard</a></li>
-                        <li><a href="/posts.xqy">Posts</a></li>
+                        <li><a href="/wp-admin/dashboard.xqy">Dashboard</a></li>
+                        <li><a href="/wp-admin/posts.xqy">Posts</a></li>
                         <li><a href="#media">Media</a></li>
-                        <li><a href="/pages.xqy">Pages</a></li>
-                        <li><a href="/comments.xqy">Comments</a></li>
-                        <li><a href="/users.xqy">Users</a></li>
+                        <li><a href="/wp-admin/pages.xqy">Pages</a></li>
+                        <li><a href="/wp-admin/comments.xqy">Comments</a></li>
+                        <li><a href="/wp-admin/users.xqy">Users</a></li>
                         <!-- li><a href="#tools">Tools</a></li -->
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/import.xqy">Import</a></li>
-                                <li><a href="/export.xqy">Export to Wordpress</a></li>
+                                <li><a href="/wp-admin/import.xqy">Import</a></li>
+                                <li><a href="/wp-admin/export.xqy">Export to Wordpress</a></li>
                                 <!-- li class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="#">Separated link</a></li>

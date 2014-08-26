@@ -20,5 +20,5 @@ declare variable $doc as document-node() := fn:doc($uri);
     let $node := mem:node-replace($doc//title, element title {$title})
     let $node := mem:node-replace($node//content:encoded, element content:encoded {$article}) 
     return xdmp:node-replace($doc, $node),
-    xdmp:redirect-response("/dashboard.xqy?msg=updated")   
+    xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=updated")   
 )

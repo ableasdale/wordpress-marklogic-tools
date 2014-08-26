@@ -17,7 +17,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                     for $x in ml-wp-data:get-posts()/*
                     order by number($x/wp:post_id) ascending
                     return element tr {
-                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
@@ -25,10 +25,10 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         element td {let $strs := for $i in $x/category[@domain = "category"] return $i/string() return fn:string-join($strs, ", ")},
                         element td {attribute class {"tags"}, 
                             let $strs := for $i in $x/category[@domain = "post_tag"] 
-                            return view-tools:create-badge-link( fn:concat("/editor.xqy?id=", $i/string()), $i/string()) 
+                            return view-tools:create-badge-link( fn:concat("/wp-admin/editor.xqy?id=", $i/string()), $i/string()) 
                             return $strs
                         },
-                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
+                        element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}
                     }   
                 }

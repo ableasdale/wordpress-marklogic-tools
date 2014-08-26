@@ -36,14 +36,14 @@ xdmp:set-response-content-type("text/xml; charset=utf-8"), xdmp:add-response-hea
 	xmlns:wp="http://wordpress.org/export/1.2/">
 
 <channel>
-	<title>The Middle East Magazine</title>
-	<link>http://www.themiddleeastmagazine.com/wp-mideastmag-live</link>
-	<description>Published since 1974, The Middle East is well established as the region&#039;s bestselling pan-Arab magazine in English. It provides an expert commentary on wide ranging issues in the Arab World.</description>
+	<title>TODO</title>
+	<link>http://www.example.com/TODO</link>
+	<description>TODO.</description>
 	<pubDate>Thu, 21 Aug 2014 15:15:21 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
-	<wp:base_site_url>http://www.themiddleeastmagazine.com/wp-mideastmag-live</wp:base_site_url>
-	<wp:base_blog_url>http://www.themiddleeastmagazine.com/wp-mideastmag-live</wp:base_blog_url>
+	<wp:base_site_url>http://www.example.com/TODO</wp:base_site_url>
+	<wp:base_blog_url>http://www.example.com/TODO</wp:base_blog_url>
 
     {ml-wp-data:get-authors()}
     {ml-wp-data:get-categories()}

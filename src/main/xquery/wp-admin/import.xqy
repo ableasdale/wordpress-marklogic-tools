@@ -30,9 +30,9 @@ view-tools:create-wp-admin-html-page("Import", (),
                       <h3 class="panel-title">Your Current Database</h3>
                     </div>
                     <div class="panel-body">
-                        <p><a href="/posts.xqy">{fn:count(ml-wp-data:get-posts())} posts</a></p>
+                        <p><a href="/wp-admin/posts.xqy">{fn:count(ml-wp-data:get-posts())} posts</a></p>
                         <p>TODO - how many published/pending etc..</p>     
-                        <p><a href="/pages.xqy">{fn:count(ml-wp-data:get-pages())} pages</a></p>
+                        <p><a href="/wp-admin/pages.xqy">{fn:count(ml-wp-data:get-pages())} pages</a></p>
                         <p>{fn:count(ml-wp-data:get-comments())} comments</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ view-tools:create-wp-admin-html-page("Import", (),
                             {for $fh in view-tools:get-export-directories()/dir:entry
                             return
                                 element a {
-                                    attribute href {concat("/import-wp-export-file.xqy?fname=", fn:encode-for-uri($fh/dir:pathname/text()))},
+                                    attribute href {concat("/wp-admin/import-wp-export-file.xqy?fname=", fn:encode-for-uri($fh/dir:pathname/text()))},
                                     attribute class { "list-group-item" },
                                     ($fh/dir:filename/text() || " " || "(" || fn:round(xs:unsignedLong($fh/dir:content-length/text()) div 1024) || " Kb)")
                                 }
