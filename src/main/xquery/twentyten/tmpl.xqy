@@ -21,6 +21,8 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 };
 
 declare function tmpl:get-header() {
+let $config := doc("/app-configuration.xml")
+return
 (
 <div id="header">
     <div id="masthead">
@@ -31,13 +33,13 @@ declare function tmpl:get-header() {
            			<a href="http://localhost/" title="Test" rel="home">Test</a>
            		</span>
 			</h1>
-			<div id="site-description">Just another WordPress site</div>
+			<div id="site-description">{$config//description}</div>
 			<img src="http://localhost/wp-content/themes/twentyten/images/headers/path.jpg" width="940" height="198" alt="" />
 		</div>
 
 		<div id="access" role="navigation">
       		<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-			<div class="menu"><ul><li class="current_page_item"><a href="http://localhost/">Home</a></li><li class="page_item page-item-2"><a href="http://localhost/?page_id=2">Sample Page</a></li></ul></div>
+			<div class="menu"><ul><li class="current_page_item"><a href="http://localhost/">TODO - Home</a></li><li class="page_item page-item-2"><a href="http://localhost/?page_id=2">Sample Page</a></li></ul></div>
         </div>
         
     </div>

@@ -116,6 +116,18 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                                 <li><a href="#">One more separated link</a></li -->
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/wp-admin/settings-general.xqy">General</a></li>
+                                <!-- li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li -->
+                            </ul>
+                        </li>
+                        
+                        
                     </ul>
                 </div>
                 

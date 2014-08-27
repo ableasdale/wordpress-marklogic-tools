@@ -19,4 +19,6 @@ declare variable $DIRECTORIES as xs:string+ := ("E:\wordpress-marklogic\", "E:\w
 :)
 
 
+
+declare variable $CONFIG-DOC-URI as xs:string := "/app-configuration.xml";
 declare variable $DIRECTORIES as xs:string+ := ("/tmp/wordpress-marklogic-tools/sample-exports");
