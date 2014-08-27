@@ -103,3 +103,21 @@ view-tools:create-wp-admin-html-page("General Settings", (),
         </form>
     </div>)
     
+    
+    
+(:  TODO - the save and update process needs to do this:
+
+
+xdmp:document-insert("/app-configuration.xml",
+<app-configuration>
+  <title>Test2</title>
+  <link>http://localhost</link>
+  <description>AAAAAAAnd another WordPress site</description>
+  <pubDate>Wed, 27 Aug 2014 06:33:32 +0000</pubDate>
+  <language>en-US</language>
+  <wp:wxr_version>1.2</wp:wxr_version>
+  <wp:base_site_url>http://localhost</wp:base_site_url>
+  <wp:base_blog_url>http://localhost</wp:base_blog_url>
+</app-configuration>)
+
+:)
