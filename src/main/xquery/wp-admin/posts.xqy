@@ -37,16 +37,6 @@ view-tools:create-wp-admin-html-page("Posts", (),
     </div>)
 
 
-
-
-
-
-
-
-
-
-
-
 (:
 
 <item>
