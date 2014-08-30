@@ -80,8 +80,8 @@ declare function view-tools:create-wp-admin-html-page($title as xs:string, $head
 };
 
 declare function view-tools:wp-admin-navigation() as element(div) {
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
                 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -101,7 +101,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         
                         
                         <li class="dropdown">
-                            <a href="/wp-admin/posts.xqy" class="dropdown-toggle" data-toggle="dropdown">Posts<span class="caret"></span></a>
+                            <a href="/wp-admin/posts.xqy" class="dropdown-toggle" data-toggle="dropdown">Posts <span class="caret"></span></a>
                        
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/wp-admin/posts.xqy">All Posts</a></li>
@@ -119,7 +119,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <!-- li><a href="#tools">Tools</a></li -->
                         
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/wp-admin/import.xqy">Import</a></li>
                                 <li><a href="/wp-admin/export.xqy">Export to Wordpress</a></li>
@@ -130,7 +130,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/wp-admin/settings-general.xqy">General</a></li>
                                 <!-- li class="divider"></li>

@@ -11,7 +11,7 @@ declare variable $doc := doc($consts:CONFIG-DOC-URI);
 
 view-tools:create-wp-admin-html-page("General Settings", (),
     <div id="settings">
-        <h2>General Settings</h2>
+        <!-- h2>General Settings</h2 -->
         
         <form role="form" class="form-horizontal" action="/wp-admin/update.xqy" method="post">
             <div class="well">

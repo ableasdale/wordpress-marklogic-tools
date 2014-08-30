@@ -63,7 +63,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                     attribute type {"hidden"},
                     attribute name {"uri"},
                     attribute value {xdmp:node-uri($item)}
-                }},
+                }}
                 {element input {
                     attribute type {"hidden"},
                     attribute name {"id"},
