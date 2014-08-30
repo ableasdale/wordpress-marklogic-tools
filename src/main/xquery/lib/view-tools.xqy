@@ -98,7 +98,20 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                     <ul class="nav navbar-nav">
                         <!-- TODO - add class="active" to active page -->
                         <li><a href="/wp-admin/dashboard.xqy">Dashboard</a></li>
-                        <li><a href="/wp-admin/posts.xqy">Posts</a></li>
+                        
+                        
+                        <li class="dropdown">
+                            <a href="/wp-admin/posts.xqy" class="dropdown-toggle" data-toggle="dropdown">Posts<span class="caret"></span></a>
+                       
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/wp-admin/posts.xqy">All Posts</a></li>
+                                <li><a href="/wp-admin/editor.xqy">Add New</a></li>
+                                <li><a href="/wp-admin/categories.xqy">Categories</a></li>
+                                <li><a href="/wp-admin/tags.xqy">Tags</a></li>
+                            </ul>
+                        </li>
+                        
+                        
                         <li><a href="#media">Media</a></li>
                         <li><a href="/wp-admin/pages.xqy">Pages</a></li>
                         <li><a href="/wp-admin/comments.xqy">Comments</a></li>

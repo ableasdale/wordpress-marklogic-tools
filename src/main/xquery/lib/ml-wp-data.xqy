@@ -64,9 +64,16 @@ declare function ml-wp-data:get-wp-post-ids() as xs:integer* {
 (: pages and posts both have a wp:post_id - this will grab either - NOTE this returns a document-node not an element :)
 declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-node() {
   (: ml-wp-data:get-items()/wp:post_id[. = $id]/.. :)
-  cts:search(fn:doc(), 
-        cts:and-query(( cts:element-value-query(xs:QName("wp:post_id"), string($id)), cts:collection-query(("items")) ))              
-    )
+  
+  if($id = 0)
+  then (ml-wp-data:new-post-xml())
+  else (
+    (: TODO - this is really nasty - at the moment I'm not managing IDs at all - you can import a couple of basic pages with the same ID and it'll return a sequence of items - I'm just returning the first one here... Not elegant - but it works for now.... :)
+
+    cts:search(fn:doc(), 
+          cts:and-query(( cts:element-value-query(xs:QName("wp:post_id"), string($id)), cts:collection-query(("items")) ))              
+      )[1]
+  )
 };
 
 declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node() {
@@ -88,4 +95,72 @@ declare function ml-wp-data:get-posts-by-authorname($username as xs:string) {
 
 declare function ml-wp-data:get-user-first-and-last-name-from-username($name as xs:string) as xs:string {
     ml-wp-data:get-author-first-and-last-name-from-username($name)
+};
+
+declare function ml-wp-data:new-post-xml(){
+(: TODO - handle the ID - it's hard coded!  and figure out how to deal with users - I currently have no user code in place and deal with the post date - is it the point where the publish button is pressed?  I suspect so... :)
+(: first id you edit is 4; second is 6; - HOW? :)
+(: The process (how WP does it)
+
+- As soon as you create a new post, a doc (assuming a clean WP install - this will have an ID of 4) gets saved to the database it seems to be an "auto-draft"
+- As you then save the doc, 
+
+:)
+
+(:
+Transition:
+
+mysql> select * from wp_posts where id = 4;
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+| ID | post_author | post_date           | post_date_gmt       | post_content | post_title | post_excerpt | post_status | comment_status | ping_status | post_password | post_name | to_ping | pinged | post_modified       | post_modified_gmt   | post_content_filtered | post_parent | guid                  | menu_order | post_type | post_mime_type | comment_count |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+|  4 |           1 | 2014-08-29 05:35:34 | 0000-00-00 00:00:00 |              | Auto Draft |              | auto-draft  | open           | open        |               |           |         |        | 2014-08-29 05:35:34 | 0000-00-00 00:00:00 |                       |           0 | http://localhost/?p=4 |          0 | post      |                |             0 |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from wp_posts where id = 4;
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+| ID | post_author | post_date           | post_date_gmt       | post_content | post_title | post_excerpt | post_status | comment_status | ping_status | post_password | post_name | to_ping | pinged | post_modified       | post_modified_gmt   | post_content_filtered | post_parent | guid                  | menu_order | post_type | post_mime_type | comment_count |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+|  4 |           1 | 2014-08-29 05:40:43 | 0000-00-00 00:00:00 |              | draft      |              | draft       | open           | open        |               |           |         |        | 2014-08-29 05:40:43 | 2014-08-29 05:40:43 |                       |           0 | http://localhost/?p=4 |          0 | post      |                |             0 |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+
+mysql> select * from wp_posts where id = 4;
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+| ID | post_author | post_date           | post_date_gmt       | post_content | post_title | post_excerpt | post_status | comment_status | ping_status | post_password | post_name | to_ping | pinged | post_modified       | post_modified_gmt   | post_content_filtered | post_parent | guid                  | menu_order | post_type | post_mime_type | comment_count |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+|  4 |           1 | 2014-08-29 05:41:29 | 2014-08-29 05:41:29 |              | draft      |              | publish     | open           | open        |               | draft     |         |        | 2014-08-29 05:41:29 | 2014-08-29 05:41:29 |                       |           0 | http://localhost/?p=4 |          0 | post      |                |             0 |
++----+-------------+---------------------+---------------------+--------------+------------+--------------+-------------+----------------+-------------+---------------+-----------+---------+--------+---------------------+---------------------+-----------------------+-------------+-----------------------+------------+-----------+----------------+---------------+
+
+:)
+
+
+document {
+<item>
+    <title/>
+    <link>http://localhost/?p=4</link>
+    <pubDate>Fri, 29 Aug 2014 05:11:37 +0000</pubDate>
+    <dc:creator>admin</dc:creator>
+    <guid isPermaLink="false">http://localhost/?p=4</guid>
+    <description/>
+    <content:encoded/>
+    <excerpt:encoded/>
+    <wp:post_id>4</wp:post_id>
+    <wp:post_date>2014-08-29 05:11:37</wp:post_date>
+    <wp:post_date_gmt>2014-08-29 05:11:37</wp:post_date_gmt>
+    <wp:comment_status>open</wp:comment_status>
+    <wp:ping_status>open</wp:ping_status>
+    <wp:post_name/>
+    <wp:status>publish</wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type>post</wp:post_type>
+    <wp:post_password/>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="uncategorized">Uncategorized</category>
+    <wp:postmeta>
+        <wp:meta_key>_edit_last</wp:meta_key>
+        <wp:meta_value>1</wp:meta_value>
+    </wp:postmeta>
+</item> }
 };
