@@ -8,15 +8,25 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 (: Note - this will break if ML ever remove this! :)
 import module namespace mem = "http://xqdev.com/in-mem-update" at "/MarkLogic/appservices/utils/in-mem-update.xqy";
+import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
+import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
+import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
+declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
 declare variable $uri as xs:string :=  xdmp:get-request-field("uri");
 declare variable $title as xs:string := xdmp:get-request-field("title");
 declare variable $article as xs:string := xdmp:get-request-field("article");
 declare variable $doc as document-node() := fn:doc($uri);
 
-    (: let $_ := xdmp:log($doc//title)
-    let $_ := xdmp:log($title) :)
-(    
+if ($id eq 0)
+then (
+    (: This is a new doc :)
+    let $x:= ml-wp-data:new-post-xml((ml-wp-data:get-highest-post-id() + 1), $title, $article)
+    return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "items" ),
+    xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=created"))   
+)
+else (    
+    (: This is a pre-existing doc - so make the necessary updates :)
     let $node := mem:node-replace($doc//title, element title {$title})
     let $node := mem:node-replace($node//content:encoded, element content:encoded {$article}) 
     return xdmp:node-replace($doc, $node),

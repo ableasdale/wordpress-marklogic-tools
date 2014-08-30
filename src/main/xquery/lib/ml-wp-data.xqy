@@ -12,6 +12,8 @@ declare namespace wfw = "http://wellformedweb.org/CommentAPI/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
+import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
+
 
 (: We probably won't ever need to get the channel?
 declare function ml-wp-data:get-channel() {
@@ -70,7 +72,7 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
   (: ml-wp-data:get-items()/wp:post_id[. = $id]/.. :)
   
   if($id = 0)
-  then (ml-wp-data:new-post-xml())
+  then (ml-wp-data:new-post-xml(0, "", ""))
   else (
     (: TODO - this is really nasty - at the moment I'm not managing IDs at all - you can import a couple of basic pages with the same ID and it'll return a sequence of items - I'm just returning the first one here... Not elegant - but it works for now.... :)
 
@@ -101,7 +103,7 @@ declare function ml-wp-data:get-user-first-and-last-name-from-username($name as 
     ml-wp-data:get-author-first-and-last-name-from-username($name)
 };
 
-declare function ml-wp-data:new-post-xml(){
+declare function ml-wp-data:new-post-xml($id, $title, $content){
 (: TODO - handle the ID - it's hard coded!  and figure out how to deal with users - I currently have no user code in place and deal with the post date - is it the point where the publish button is pressed?  I suspect so... :)
 (: first id you edit is 4; second is 6; - HOW? :)
 (: The process (how WP does it)
@@ -138,20 +140,23 @@ mysql> select * from wp_posts where id = 4;
 
 :)
 
-
+(: TODO - is there a pubdate if the article is a draft? :)
+let $timestamp := fn:format-dateTime(fn:current-dateTime(), $consts:XML-DATETIME)
+let $mysqltimestamp := fn:format-dateTime(fn:current-dateTime(), $consts:SQL-DATETIME)
+return
 document {
 <item>
-    <title/>
-    <link>http://localhost/?p=4</link>
-    <pubDate>Fri, 29 Aug 2014 05:11:37 +0000</pubDate>
+    <title>{$title}</title>
+    <link>http://localhost/?p=4 - TODO</link>
+    <pubDate>{$timestamp}</pubDate>
     <dc:creator>admin</dc:creator>
-    <guid isPermaLink="false">http://localhost/?p=4</guid>
+    <guid isPermaLink="false">http://localhost/?p=4 - TODO</guid>
     <description/>
-    <content:encoded/>
+    <content:encoded>{$content}</content:encoded>
     <excerpt:encoded/>
-    <wp:post_id>4</wp:post_id>
-    <wp:post_date>2014-08-29 05:11:37</wp:post_date>
-    <wp:post_date_gmt>2014-08-29 05:11:37</wp:post_date_gmt>
+    <wp:post_id>{$id}</wp:post_id>
+    <wp:post_date>{$mysqltimestamp}</wp:post_date>
+    <wp:post_date_gmt>{$mysqltimestamp}</wp:post_date_gmt>
     <wp:comment_status>open</wp:comment_status>
     <wp:ping_status>open</wp:ping_status>
     <wp:post_name/>

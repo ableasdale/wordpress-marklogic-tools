@@ -19,6 +19,7 @@ declare variable $DIRECTORIES as xs:string+ := ("E:\wordpress-marklogic\", "E:\w
 :)
 
 
-
+declare variable $XML-DATETIME as xs:string := "[FNn,*-3], [D01] [MNn,*-3] [Y0001] [H01]:[m01]:[s01] [Z]";
+declare variable $SQL-DATETIME as xs:string := "[Y0001]-[M01]-[D01] [H01]:[m01]:[s01]";
 declare variable $CONFIG-DOC-URI as xs:string := "/app-configuration.xml";
 declare variable $DIRECTORIES as xs:string+ := ("/tmp/wordpress-marklogic-tools/sample-exports");
