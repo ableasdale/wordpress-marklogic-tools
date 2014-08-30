@@ -37,7 +37,9 @@ declare function ml-wp-data:get-tags() {
 };
 
 declare function ml-wp-data:get-items() {
-  fn:collection("items")
+  for $x in fn:collection("items")
+  order by number($x//wp:post_id) ascending
+  return $x
 };
 
 declare function ml-wp-data:get-pages() {
@@ -60,7 +62,7 @@ declare function ml-wp-data:get-comments() {
 };
 
 declare function ml-wp-data:get-wp-post-ids() as xs:integer* {
-  ml-wp-data:get-items()/wp:post_id
+    ml-wp-data:get-items()/wp:post_id
 };
 
 declare function ml-wp-data:get-highest-post-id() as xs:double {
