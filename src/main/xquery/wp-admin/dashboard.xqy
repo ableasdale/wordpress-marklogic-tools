@@ -25,19 +25,8 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
         )
         else ()}
         <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">At a Glance</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p><a href="/wp-admin/posts.xqy"><span class="badge">{fn:count(ml-wp-data:get-posts())}</span> Posts</a></p>
-                        <p>TODO - how many published/pending etc..</p>     
-                        <p><a href="/wp-admin/pages.xqy"><span class="badge">{fn:count(ml-wp-data:get-pages())}</span> Pages</a></p>
-                        <p><a href="/wp-admin/comments.xqy"><span class="badge">{fn:count(ml-wp-data:get-comments())}</span> Comments</a></p>
-                    </div>
-                </div>
-                
+            <div class="col-sm-4">    
+                {view-tools:summary-widget("At a Glance")}    
                 <div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="panel-title">Activity</h3>

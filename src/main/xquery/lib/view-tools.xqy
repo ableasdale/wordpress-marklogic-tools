@@ -2,6 +2,7 @@ xquery version "1.0-ml";
 
 module namespace view-tools = "http://www.xmlmachines.com/view-tools";
 
+import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
 declare function view-tools:create-html-page($head, $content) {
@@ -39,6 +40,20 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
 	{$additional-content}
 </head>
 )
+};
+
+declare function view-tools:summary-widget($title as xs:string) {
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{$title}</h3>
+    </div>
+    <div class="panel-body">
+        <p><a href="/wp-admin/posts.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-posts())}</span>Posts</a></p>
+        <p>TODO - how many published/pending etc..</p>     
+        <p><a href="/wp-admin/pages.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-pages())}</span>Pages</a></p>
+        <p><a href="/wp-admin/comments.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-comments())}</span>Comments</a></p>
+    </div>
+</div>
 };
 
 declare function view-tools:get-export-directories() { 

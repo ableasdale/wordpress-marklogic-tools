@@ -25,25 +25,14 @@ view-tools:create-wp-admin-html-page("Import", (),
   
         <div class="row">
             <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Your Current Database</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p><a href="/wp-admin/posts.xqy">{fn:count(ml-wp-data:get-posts())} posts</a></p>
-                        <p>TODO - how many published/pending etc..</p>     
-                        <p><a href="/wp-admin/pages.xqy">{fn:count(ml-wp-data:get-pages())} pages</a></p>
-                        <p>{fn:count(ml-wp-data:get-comments())} comments</p>
-                    </div>
-                </div>
+                {view-tools:summary-widget("Your Current Database")}
             </div>
             
             <div class="col-sm-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Available WordPress Exports</h3>
+                        <h3 class="panel-title">Available WordPress Export XML Files</h3>
                     </div>
-                    <p>TODO - Wire this up so it imports the files into ML</p>
                     <div class="panel-body">
                         <div class="list-group">
                             {for $fh in view-tools:get-export-directories()/dir:entry
