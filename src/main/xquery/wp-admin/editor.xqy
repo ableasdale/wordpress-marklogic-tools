@@ -19,8 +19,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
          then ( view-tools:warning-notification( " You are currently creating a new post.", true()) )
          else ( view-tools:info-notification ( (element strong {"Notice "}, "You are currently editing a post with the status of ", element strong {$item/wp:status/string()}, " with the post id ", fn:concat("#", $id, ":&quot;", $item/title/string(),"&quot;") ), false()) )
         }
-        <p>debug: {ml-wp-data:get-highest-post-id()}</p>    
-            
+
         <div class="page-header">
             <form class="form-horizontal" action="/wp-admin/update.xqy" method="post">
                 
@@ -56,7 +55,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                 <div class="form-group">
                     <!-- "col-xs-offset-2 col-xs-10" -->
                     <div class="col-xs-10">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save">{" "}</span> Save Changes</button>
                     </div>
                 </div>
                 {element input {

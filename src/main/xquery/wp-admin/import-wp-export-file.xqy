@@ -35,7 +35,7 @@ for $x in wp-export-data:get-terms() return (xdmp:document-insert(fn:concat("/",
 (: gen :)
 (: insert items :)
 for $x in wp-export-data:get-items() return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "items" ), "1 item loaded ok")
-)
-
+),
+xdmp:set-server-field("filename", ())
 
 )

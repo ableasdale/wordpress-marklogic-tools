@@ -27,19 +27,94 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 :)
 
+declare function local:category-form() {
+<form role="form" class="form-horizontal" action="/wp-admin/update.xqy" method="post">
+    <div class="well">
+
+         <div class="form-group">
+            <label for="cat-name" class="control-label col-sm-3">Name</label>
+            <div class="col-sm-9">
+                {
+                element input {
+                        attribute type {"text"},
+                        attribute class {"form-control"},
+                        attribute name {"name"},
+                        attribute id {"cat-name"}
+                    }             
+                }
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="tagline" class="control-label col-sm-3">Slug</label>
+            <div class="col-sm-9">
+                {
+                element input {
+                        attribute type {"text"},
+                        attribute class {"form-control"},
+                        attribute name {"tagline"},
+                        attribute id {"tagline"}
+                    }             
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="wp-address-url" class="control-label col-sm-3">Parent</label>
+            <div class="col-sm-9">
+                {
+                element input {
+                        attribute type {"text"},
+                        attribute class {"form-control"},
+                        attribute name {"wp-address-url"},
+                        attribute id {"wp-address-url"}
+                    }             
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="wp-site-url" class="control-label col-sm-3">Description</label>
+            <div class="col-sm-9">
+                
+                {
+                element input {
+                        attribute type {"text"},
+                        attribute class {"form-control"},
+                        attribute name {"wp-site-url"},
+                        attribute id {"wp-site-url"}
+                    }             
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save">{" "}</span> Create Category</button>
+            </div>
+        </div>
+        
+    </div>
+</form>
+};
+
 
 view-tools:create-wp-admin-html-page("Categories", (),
     <div id="categories">
-        <h1>TODO - put in a form to add cats</h1>
-    
+        <h3>Create Category</h3>
+        {local:category-form()}
+        <h3>Categories</h3>
         <table class="table table-striped table-bordered">
-            {view-tools:create-thead-element(("Name", "Description", "Slug", "Count"))}
+            {view-tools:create-thead-element(("ID","Name", "Description", "Parent(TODO-Nest)", "Slug", "Count"))}
             <tbody>
                 {
                     for $x in ml-wp-data:get-categories()
                     return element tr {
+                        element td {string($x//wp:term_id)},
                         element td {string($x//wp:cat_name)},
                         element td {string($x//wp:category_description)},
+                        element td {string($x//wp:category_parent)},
                         element td {string($x//wp:category_nicename)},
                         element td {"TODO"}
                           
