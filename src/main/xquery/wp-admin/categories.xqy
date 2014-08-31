@@ -68,6 +68,7 @@ declare function local:category-form() {
                         attribute type {"text"},
                         attribute class {"form-control"},
                         attribute name {"wp-address-url"},
+                        attribute placeholder {"TODO"},
                         attribute id {"wp-address-url"}
                     }             
                 }
@@ -91,13 +92,14 @@ declare function local:category-form() {
         
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save">{" "}</span> Create Category</button>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Create Category</button>
             </div>
         </div>
         
     </div>
 </form>
 };
+(: TODO _ submit - ml-wp-data:get-highest-category-id() :)
 
 
 view-tools:create-wp-admin-html-page("Categories", (),

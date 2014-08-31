@@ -14,11 +14,14 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
 declare variable $uri as xs:string :=  xdmp:get-request-field("uri");
+declare variable $type as xs:string := xdmp:get-request-field("type", "");
+
 declare variable $title as xs:string := xdmp:get-request-field("title");
 declare variable $status as xs:string := xdmp:get-request-field("status");
 declare variable $article as xs:string := xdmp:get-request-field("article");
 declare variable $doc as document-node() := fn:doc($uri);
 
+declare function local:process-item() {
 if ($id eq 0)
 then (
     (: This is a new doc :)
@@ -34,3 +37,15 @@ else (
     return xdmp:node-replace($doc, $node),
     xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=updated")   
 )
+};
+
+declare function local:process-category(){
+    xdmp:log("cat")
+};
+
+(: Is it an item, a category or other? :)
+if ($type eq "item")
+then (local:process-item())
+else if ($type eq "category")
+then (local:process-category())
+else ("Updates for that datatype are either supported in this release or something went wrong..")

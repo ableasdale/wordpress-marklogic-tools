@@ -51,6 +51,14 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                             </select>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                    <!-- "col-xs-offset-2 col-xs-10" -->
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Save Changes</button>
+                        </div>
+                    </div>
+                    
                </div>
                 <p>TODO: No permalink impl, No Media Library integration, No HTML Source view (as tab that can be toggled)</p>
     
@@ -68,6 +76,11 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                     attribute type {"hidden"},
                     attribute name {"uri"},
                     attribute value {xdmp:node-uri($item)}
+                }}
+                {element input {
+                    attribute type {"hidden"},
+                    attribute name {"type"},
+                    attribute value {"item"}
                 }}
                 {element input {
                     attribute type {"hidden"},

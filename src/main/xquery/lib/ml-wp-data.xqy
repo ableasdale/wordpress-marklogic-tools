@@ -69,6 +69,10 @@ declare function ml-wp-data:get-highest-post-id() as xs:double {
     max(//wp:post_id)
 };
 
+declare function ml-wp-data:get-highest-category-id() as xs:double {
+    max(//wp:term_id)
+};
+
 (: pages and posts both have a wp:post_id - this will grab either - NOTE this returns a document-node not an element :)
 declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-node() {
   (: ml-wp-data:get-items()/wp:post_id[. = $id]/.. :)
