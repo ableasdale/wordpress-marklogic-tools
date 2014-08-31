@@ -74,7 +74,8 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
   (: ml-wp-data:get-items()/wp:post_id[. = $id]/.. :)
   
   if($id = 0)
-  then (ml-wp-data:new-post-xml(0, "", ""))
+  (: TODO - this is going to cause problems as other pieces of code are updated! :)
+  then (ml-wp-data:new-post-xml(0, "", "", ""))
   else (
     (: TODO - this is really nasty - at the moment I'm not managing IDs at all - you can import a couple of basic pages with the same ID and it'll return a sequence of items - I'm just returning the first one here... Not elegant - but it works for now.... :)
 
@@ -84,7 +85,8 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
   )
 };
 
-declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node() {
+(: TODO - had to slacken the document-node() return type; we don't really have a proper mechanism for handling WP users - this is necessary! :)
+declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node()? {
     cts:search(fn:doc(), 
         cts:and-query(( cts:element-value-query(xs:QName("wp:author_login"), string($username)), cts:collection-query(("authors")) ))              
     )
@@ -105,8 +107,8 @@ declare function ml-wp-data:get-user-first-and-last-name-from-username($name as 
     ml-wp-data:get-author-first-and-last-name-from-username($name)
 };
 
-declare function ml-wp-data:new-post-xml($id, $title, $content){
-(: TODO - handle the ID - it's hard coded!  and figure out how to deal with users - I currently have no user code in place and deal with the post date - is it the point where the publish button is pressed?  I suspect so... :)
+declare function ml-wp-data:new-post-xml($id as xs:double, $status as xs:string, $title as xs:string, $content as xs:string){
+(:  figure out how to deal with users - I currently have no user code in place and deal with the post date - is it the point where the publish button is pressed?  I suspect so... :)
 (: first id you edit is 4; second is 6; - HOW? :)
 (: The process (how WP does it)
 
@@ -162,7 +164,7 @@ document {
     <wp:comment_status>open</wp:comment_status>
     <wp:ping_status>open</wp:ping_status>
     <wp:post_name/>
-    <wp:status>publish</wp:status>
+    <wp:status>{$status}</wp:status>
     <wp:post_parent>0</wp:post_parent>
     <wp:menu_order>0</wp:menu_order>
     <wp:post_type>post</wp:post_type>

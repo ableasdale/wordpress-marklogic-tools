@@ -36,7 +36,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                         <p>Comments</p>
                     </div>
                 </div>
-            </div>
+            </div> 
             
             <div class="col-sm-8">
                 <div class="panel panel-default">
@@ -45,10 +45,21 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                     </div>
                     <div class="panel-body">
                         
-                        <form id="editor" class="form-horizontal" role="form">
-                            <input style="margin-bottom:1em;" class="form-control input-block-level" type="text" placeholder="Post Title" />
-                            <textarea style="margin-bottom:1em; height:12em;" class="form-control">What's on your mind</textarea>
-                            <button class="btn btn-primary"  type="submit"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Save Draft</button>
+                        <form action="/wp-admin/update.xqy" method="post" class="form-horizontal" role="form">
+                            
+                            <div style="margin-bottom:1em;" class="input-group">
+                                <span class="input-group-addon">Title</span>
+                                <input name="title" class="form-control" type="text" placeholder="Your Post Title" />
+                            </div>
+                            
+                            <label for="article">Article body:</label>
+                            <textarea style="margin-bottom:1em; height:12em;" name="article" class="form-control">{" "}</textarea>
+                            
+                            <input type="hidden" name="id" value="0" />
+                            <input type="hidden" name="status" value="draft" />
+                            
+                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Save Draft</button>
+                            
                         </form>
                     </div>
                 </div>

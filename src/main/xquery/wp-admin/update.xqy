@@ -22,7 +22,7 @@ declare variable $doc as document-node() := fn:doc($uri);
 if ($id eq 0)
 then (
     (: This is a new doc :)
-    let $x:= ml-wp-data:new-post-xml((ml-wp-data:get-highest-post-id() + 1), $title, $article)
+    let $x:= ml-wp-data:new-post-xml((ml-wp-data:get-highest-post-id() + 1), $status, $title, $article)
     return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "items" ),
     xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=created"))   
 )
