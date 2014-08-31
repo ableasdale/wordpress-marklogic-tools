@@ -28,7 +28,7 @@ view-tools:create-wp-admin-html-page("Import", (),
                 {view-tools:summary-widget("Your Current Database")}
             </div>
             
-            <div class="col-sm-5">
+            <div class="col-sm-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Available WordPress Export XML Files</h3>
