@@ -49,14 +49,18 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                 </div>
             </div>
             
-            <div class="col-sm-4">
+            <div class="col-sm-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="panel-title">Quick Draft</h3>
                     </div>
                     <div class="panel-body">
-                        <input />
-                        <textarea />
+                        
+                        <form id="editor" class="form-horizontal" role="form">
+                            <input style="margin-bottom:1em;" class="form-control input-block-level" type="text" placeholder="Post Title" />
+                            <textarea style="margin-bottom:1em; height:12em;" class="form-control">What's on your mind</textarea>
+                            <button class="btn btn-primary"  type="submit"><span class="glyphicon glyphicon-save">{" "}</span> Save Draft</button>
+                        </form>
                     </div>
                 </div>
             </div>

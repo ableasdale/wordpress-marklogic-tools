@@ -17,8 +17,8 @@ view-tools:create-wp-admin-html-page("General Settings", (),
             <div class="well">
       
                  <div class="form-group">
-                    <label for="site-title" class="control-label col-xs-3">Site Title</label>
-                    <div class="col-xs-9">
+                    <label for="site-title" class="control-label col-sm-3">Site Title</label>
+                    <div class="col-sm-9">
                         {
                         element input {
                                 attribute type {"text"},
@@ -33,8 +33,8 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 
     
                 <div class="form-group">
-                    <label for="tagline" class="control-label col-xs-3">Tagline</label>
-                    <div class="col-xs-9">
+                    <label for="tagline" class="control-label col-sm-3">Tagline</label>
+                    <div class="col-sm-9">
                         {
                         element input {
                                 attribute type {"text"},
@@ -48,8 +48,8 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 </div>
                 
                 <div class="form-group">
-                    <label for="wp-address-url" class="control-label col-xs-3">WordPress Address (URL)</label>
-                    <div class="col-xs-9">
+                    <label for="wp-address-url" class="control-label col-sm-3">WordPress Address (URL)</label>
+                    <div class="col-sm-9">
                         {
                         element input {
                                 attribute type {"text"},
@@ -63,8 +63,9 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 </div>
                 
                 <div class="form-group">
-                    <label for="wp-site-url" class="control-label col-xs-3">Site Address (URL)</label>
-                    <div class="col-xs-9">
+                    <label for="wp-site-url" class="control-label col-sm-3">Site Address (URL)</label>
+                    <div class="col-sm-9">
+                        
                         {
                         element input {
                                 attribute type {"text"},
@@ -78,8 +79,8 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 </div>
                 
                 <div class="form-group">
-                    <label for="email-address" class="control-label col-xs-3">E-mail Address</label>
-                    <div class="col-xs-9">
+                    <label for="email-address" class="control-label col-sm-3">E-mail Address</label>
+                    <div class="col-sm-9">
                         {
                         element input {
                                 attribute type {"text"},
@@ -94,16 +95,14 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 
                 
                 <div class="form-group">
-                    <div class="col-xs-offset-3 left">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-hdd"></span> Update</button>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-hdd">{" "}</span> Update</button>
                     </div>
                 </div>
                 
             </div>
         </form>
     </div>)
-    
-    
     
 (:  TODO - the save and update process needs to do this:
 

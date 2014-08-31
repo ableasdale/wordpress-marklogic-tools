@@ -138,9 +138,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                                 <li><a href="#">Separated link</a></li>
                                 <li><a href="#">One more separated link</a></li -->
                             </ul>
-                        </li>
-                        
-                        
+                        </li>       
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="input-group">
@@ -215,6 +213,14 @@ declare function view-tools:danger-notification($message, $is-dismissible as xs:
 declare function view-tools:create-badge-link($href as xs:string, $linktext as xs:string) as element(a) {
     element a { attribute href {$href}, element span {attribute class {"badge"}, $linktext}}
 };
+
+declare function view-tools:create-tag-badge-link($href as xs:string, $linktext as xs:string) as element(a) {
+    element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {"glyphicon glyphicon-tag"}, " "}," ",$linktext}}
+};
+
+(:
+<span class="glyphicon glyphicon-tag"></span>
+:)
 
 declare function view-tools:create-thead-element($headers as xs:string*) as element(thead) {
     element thead {

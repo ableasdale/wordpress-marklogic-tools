@@ -9,12 +9,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="page-header">
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
-        
-        <button type="button" class="btn btn-default btn-sm">
-  <span class="glyphicon glyphicon-tag"></span> TODO - tag icons?
-</button>
-
-        
+             
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
             <!-- TODO - and parameterise this  -->
@@ -31,7 +26,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         element td {let $strs := for $i in $x/category[@domain = "category"] return $i/string() return fn:string-join($strs, ", ")},
                         element td {attribute class {"tags"}, 
                             let $strs := for $i in $x/category[@domain = "post_tag"] 
-                            return view-tools:create-badge-link( fn:concat("/wp-admin/editor.xqy?id=", $i/string()), $i/string()) 
+                            return view-tools:create-tag-badge-link( fn:concat("/wp-admin/editor.xqy?id=", $i/string()), $i/string()) 
                             return $strs
                         },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
