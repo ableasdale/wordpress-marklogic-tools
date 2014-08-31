@@ -34,16 +34,21 @@ declare function local:category-form() {
          <div class="form-group">
             <label for="cat-name" class="control-label col-sm-3">Name</label>
             <div class="col-sm-9">
-                {
-                element input {
-                        attribute type {"text"},
-                        attribute class {"form-control"},
-                        attribute name {"name"},
-                        attribute id {"cat-name"}
-                    }             
-                }
+                <div class="input-group">
+                    {
+                    element input {
+                            attribute type {"text"},
+                            attribute class {"form-control"},
+                            attribute name {"title"}, (: Note this is renamed so the req. field can be used for either cat or article :)
+                            attribute id {"cat-name"}
+                        }             
+                    }
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk req">{" "}</span></span>
+                </div>
             </div>
         </div>
+        
+        
         
 
         <div class="form-group">
@@ -57,6 +62,7 @@ declare function local:category-form() {
                         attribute id {"tagline"}
                     }             
                 }
+                <span class="help-block">Explain the SLUG (TODO).</span>
             </div>
         </div>
         
@@ -76,15 +82,15 @@ declare function local:category-form() {
         </div>
         
         <div class="form-group">
-            <label for="wp-site-url" class="control-label col-sm-3">Description</label>
+            <label for="description" class="control-label col-sm-3">Description</label>
             <div class="col-sm-9">
                 
                 {
                 element input {
                         attribute type {"text"},
                         attribute class {"form-control"},
-                        attribute name {"wp-site-url"},
-                        attribute id {"wp-site-url"}
+                        attribute name {"article"}, (: Note this is renamed so the req. field can be used for either cat or article :)
+                        attribute id {"description"}
                     }             
                 }
             </div>
@@ -96,11 +102,11 @@ declare function local:category-form() {
             </div>
         </div>
         
+        <input type="hidden" name="id" value="0" />
+        <input type="hidden" name="type" value="category" />
     </div>
 </form>
 };
-(: TODO _ submit - ml-wp-data:get-highest-category-id() :)
-
 
 view-tools:create-wp-admin-html-page("Categories", (),
     <div id="categories">
@@ -112,6 +118,7 @@ view-tools:create-wp-admin-html-page("Categories", (),
             <tbody>
                 {
                     for $x in ml-wp-data:get-categories()
+                    order by number(string($x//wp:term_id)) descending
                     return element tr {
                         element td {string($x//wp:term_id)},
                         element td {string($x//wp:cat_name)},

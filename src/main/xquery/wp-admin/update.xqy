@@ -39,8 +39,19 @@ else (
 )
 };
 
-declare function local:process-category(){
-    xdmp:log("cat")
+declare function local:process-category() {
+(: TODO - at the moment the slug is generated - this won't be replaced if a slug is manually entered :)
+
+let $x := <wp:category>
+    <wp:term_id>{ml-wp-data:get-highest-category-id() + 1}</wp:term_id>
+    <wp:category_nicename>{fn:lower-case(fn:replace($title, " ", "-"))}</wp:category_nicename>
+    <wp:category_parent />
+    <wp:cat_name>{$title}</wp:cat_name>
+    <wp:category_description>{$article}</wp:category_description>
+</wp:category>
+
+return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "categories" ),
+    xdmp:redirect-response("/wp-admin/category.xqy?msg=created"))   
 };
 
 (: Is it an item, a category or other? :)

@@ -8,7 +8,6 @@ import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at 
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 declare variable $id as xs:integer := xdmp:get-request-field("id", "0") cast as xs:integer;
-
 declare variable $item as element(item) := ml-wp-data:get-wp-post-by-id($id)/node();
 
 (: TODO - skanky handling if you don't pass in an id - trigger a nice error message :)

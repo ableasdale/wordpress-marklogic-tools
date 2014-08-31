@@ -57,9 +57,8 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                             
                             <input type="hidden" name="id" value="0" />
                             <input type="hidden" name="status" value="draft" />
-                            
+                            <input type="hidden" name="type" value="item" />
                             <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Save Draft</button>
-                            
                         </form>
                     </div>
                 </div>
