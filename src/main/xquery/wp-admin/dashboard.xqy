@@ -20,7 +20,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
         }
         {if (fn:string-length($message) > 0)
         then (
-            view-tools:success-notification((element strong {"Document updated"}, 
+            view-tools:success-notification((element span {attribute style {"margin-right:1em;"}, attribute class { "glyphicon glyphicon-ok"}, " "},  element strong {"Document updated"}, 
                         " TODO - provide more information about what was just updated"), true() )
         )
         else ()}
