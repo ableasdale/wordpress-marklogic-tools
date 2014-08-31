@@ -21,32 +21,38 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
         }
 
         <div class="page-header">
-            <form class="form-horizontal" action="/wp-admin/update.xqy" method="post">
-                
-                
-                <div class="input-group">
-                    <span class="input-group-addon">Title</span>
-                    {element input {
-                            attribute class {"form-control"},
-                            attribute name {"title"},
-                            attribute value {$item/title/string()}
-                        }             
-                    }                    
-                </div>
-                
-                <!-- div class="form-group">
-                    <label for="title" class="control-label col-xs-2">Title</label>
-                    <div class="col-xs-10">
-                        {element input {
-                                attribute class {"form-control"},
-                                attribute name {"title"},
-                                attribute value {$item/title/string()}
-                            }             
-                        }         
+            <form class="form-horizontal" action="/wp-admin/update.xqy" method="post">                
+                <div class="well">
+                    <div class="form-group">
+                        <label for="title" class="control-label col-xs-2">Title</label>
+                        <div class="col-xs-10">
+                            {element input {
+                                    attribute class {"form-control"},
+                                    attribute name {"title"},
+                                    attribute value {$item/title/string()}
+                                }             
+                            }
+                        </div>
                     </div>
-                </div -->
-               
-                <p>TODO: No permalink impl, No Media Library integration, No HTML Source view</p>
+                    
+                    <div class="form-group">
+                        <label for="status" class="control-label col-xs-2">Publish status</label>
+                        
+                        <div class="col-xs-3">
+                            <select class="form-control" name="status">
+                                {
+                                    for $x in ("draft", "pending", "publish")
+                                    return element option {attribute value {$x}, 
+                                        if ($item/wp:status/string() eq $x)
+                                        then (attribute selected {"selected"})
+                                        else(),
+                                        concat(upper-case(substring($x,1,1)), substring($x,2))}
+                                }
+                            </select>
+                        </div>
+                    </div>
+               </div>
+                <p>TODO: No permalink impl, No Media Library integration, No HTML Source view (as tab that can be toggled)</p>
     
                 <div class="form-group">
                     <textarea name="article">{$item/content:encoded}</textarea>
@@ -68,41 +74,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                     attribute name {"id"},
                     attribute value {$id}
                 }}
-            </form>
-                
-    
-            <!-- form class="well form-search">
-        <input type="text" class="input-medium search-query"/>
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form -->
-    
-    
-                <!-- EXAMPLES form class="form-horizontal">
-                
-
-        
-        <div class="form-group">
-            <label for="inputPassword" class="control-label col-xs-2">Password</label>
-            <div class="col-xs-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password" />
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-10">
-                <div class="checkbox">
-                    <label><input type="checkbox" /> Remember me</label>
-                </div>
-            </div>
-        </div>
-        
-        
-    </form -->
-    
-    
-    
-    
-    
+            </form>    
         </div>
     </div>
 )

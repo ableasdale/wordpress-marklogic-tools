@@ -15,6 +15,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 declare variable $id as xs:integer := xdmp:get-request-field("id") cast as xs:integer;
 declare variable $uri as xs:string :=  xdmp:get-request-field("uri");
 declare variable $title as xs:string := xdmp:get-request-field("title");
+declare variable $status as xs:string := xdmp:get-request-field("status");
 declare variable $article as xs:string := xdmp:get-request-field("article");
 declare variable $doc as document-node() := fn:doc($uri);
 
@@ -28,6 +29,7 @@ then (
 else (    
     (: This is a pre-existing doc - so make the necessary updates :)
     let $node := mem:node-replace($doc//title, element title {$title})
+    let $node := mem:node-replace($node//wp:status, element wp:status {$status})
     let $node := mem:node-replace($node//content:encoded, element content:encoded {$article}) 
     return xdmp:node-replace($doc, $node),
     xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=updated")   
