@@ -96,7 +96,7 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-hdd">{" "}</span> Update</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-hdd mr1e">{" "}</span>Update</button>
                     </div>
                 </div>
                 

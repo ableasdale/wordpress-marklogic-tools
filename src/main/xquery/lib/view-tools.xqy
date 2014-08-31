@@ -48,10 +48,10 @@ declare function view-tools:summary-widget($title as xs:string) {
       <h3 class="panel-title">{$title}</h3>
     </div>
     <div class="panel-body">
-        <p><a href="/wp-admin/posts.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-posts())}</span>Posts</a></p>
+        <p><a href="/wp-admin/posts.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-posts())}</span>Posts</a></p>
         <p>TODO - how many published/pending etc..</p>     
-        <p><a href="/wp-admin/pages.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-pages())}</span>Pages</a></p>
-        <p><a href="/wp-admin/comments.xqy"><span class="badge" style="margin-right:1em;">{fn:count(ml-wp-data:get-comments())}</span>Comments</a></p>
+        <p><a href="/wp-admin/pages.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-pages())}</span>Pages</a></p>
+        <p><a href="/wp-admin/comments.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-comments())}</span>Comments</a></p>
     </div>
 </div>
 };

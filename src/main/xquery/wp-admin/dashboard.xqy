@@ -20,7 +20,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
         }
         {if (fn:string-length($message) > 0)
         then (
-            view-tools:success-notification((element span {attribute style {"margin-right:1em;"}, attribute class { "glyphicon glyphicon-ok"}, " "},  element strong {"Document updated"}, 
+            view-tools:success-notification((element span {attribute class { "glyphicon glyphicon-ok mr1e"}, " "},  element strong {"Document updated"}, 
                         " TODO - provide more information about what was just updated"), true() )
         )
         else ()}
@@ -48,7 +48,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                         <form id="editor" class="form-horizontal" role="form">
                             <input style="margin-bottom:1em;" class="form-control input-block-level" type="text" placeholder="Post Title" />
                             <textarea style="margin-bottom:1em; height:12em;" class="form-control">What's on your mind</textarea>
-                            <button class="btn btn-primary"  type="submit"><span class="glyphicon glyphicon-save">{" "}</span> Save Draft</button>
+                            <button class="btn btn-primary"  type="submit"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Save Draft</button>
                         </form>
                     </div>
                 </div>
