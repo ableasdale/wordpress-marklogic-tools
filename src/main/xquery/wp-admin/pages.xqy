@@ -15,7 +15,7 @@ view-tools:create-wp-admin-html-page("Pages", (),
             <tbody>
                 {
                     for $x in ml-wp-data:get-pages()/*
-                    order by number($x/wp:post_id) ascending
+                    order by number($x/wp:post_id) descending
                     return element tr {
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id)) },
                         element td {string($x/title)},

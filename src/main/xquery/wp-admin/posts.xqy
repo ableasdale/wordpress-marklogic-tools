@@ -16,7 +16,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
             <tbody>
                 {
                     for $x in ml-wp-data:get-posts()/*
-                    order by number($x/wp:post_id) ascending
+                    order by number($x/wp:post_id) descending
                     return element tr {
                         if (fn:not($x/wp:status eq "publish"))
                         then (attribute class {"info"})

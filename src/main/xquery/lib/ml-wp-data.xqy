@@ -38,7 +38,7 @@ declare function ml-wp-data:get-tags() {
 
 declare function ml-wp-data:get-items() {
   for $x in fn:collection("items")
-  order by number($x//wp:post_id) ascending
+  order by number($x//wp:post_id) descending  (: ascending :)
   return $x
 };
 
