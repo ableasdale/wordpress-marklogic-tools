@@ -51,7 +51,7 @@ let $x := <wp:category>
 </wp:category>
 
 return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "categories" ),
-    xdmp:redirect-response("/wp-admin/category.xqy?msg=created"))   
+    xdmp:redirect-response("/wp-admin/categories.xqy?msg=created"))   
 };
 
 (: Is it an item, a category or other? :)
