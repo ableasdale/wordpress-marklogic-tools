@@ -62,7 +62,7 @@ declare function local:category-form() {
                         attribute id {"tagline"}
                     }             
                 }
-                <span class="help-block">Explain the SLUG (TODO).</span>
+                <span class="help-block">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.  <strong>This will be generated for you.</strong></span>
             </div>
         </div>
         
