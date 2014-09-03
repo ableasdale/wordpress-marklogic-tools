@@ -94,6 +94,16 @@ declare function view-tools:create-wp-admin-html-page($title as xs:string, $head
     return view-tools:create-html-page(view-tools:create-wp-admin-html-head($title, $head), $pagebody)
 };
 
+
+declare function view-tools:create-input-element($type as xs:string, $class as xs:string, $name as xs:string, $id as xs:string) as element(input) {
+    element input {
+        attribute type {$type},
+        attribute class {$class},
+        attribute name {$name},
+        attribute id {$id}
+    }
+};
+
 declare function view-tools:wp-admin-navigation() as element(div) {
         <div class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
