@@ -46,7 +46,7 @@ declare function local:tag-form() {
         </div>
         
         <input type="hidden" name="id" value="0" />
-        <input type="hidden" name="type" value="category" />
+        <input type="hidden" name="type" value="tag" />
     </div>
 </form>
 };

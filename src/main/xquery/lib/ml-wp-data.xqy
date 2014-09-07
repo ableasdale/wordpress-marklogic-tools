@@ -69,7 +69,7 @@ declare function ml-wp-data:get-highest-post-id() as xs:double {
     max(//wp:post_id)
 };
 
-declare function ml-wp-data:get-highest-category-id() as xs:double {
+declare function ml-wp-data:get-highest-term-id() as xs:double {
     max(//wp:term_id)
 };
 

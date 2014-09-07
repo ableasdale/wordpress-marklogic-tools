@@ -43,7 +43,7 @@ declare function local:process-category() {
 (: TODO - at the moment the slug is generated - this won't be replaced if a slug is manually entered :)
 
 let $x := <wp:category>
-    <wp:term_id>{ml-wp-data:get-highest-category-id() + 1}</wp:term_id>
+    <wp:term_id>{ml-wp-data:get-highest-term-id() + 1}</wp:term_id>
     <wp:category_nicename>{fn:lower-case(fn:replace($title, " ", "-"))}</wp:category_nicename>
     <wp:category_parent />
     <wp:cat_name>{$title}</wp:cat_name>
@@ -54,9 +54,22 @@ return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x,
     xdmp:redirect-response("/wp-admin/categories.xqy?msg=created"))   
 };
 
+declare function local:process-tag(){
+let $x := 
+<wp:tag>
+    <wp:term_id>{ml-wp-data:get-highest-term-id() + 1}</wp:term_id>
+    <wp:tag_slug>test</wp:tag_slug>
+    <wp:tag_name>test</wp:tag_name>
+    <wp:tag_description>do people really describe tags?</wp:tag_description>
+</wp:tag>
+return $x
+};
+
 (: Is it an item, a category or other? :)
 if ($type eq "item")
 then (local:process-item())
 else if ($type eq "category")
 then (local:process-category())
+else if ($type eq "tag")
+then (local:process-tag())
 else ("Updates for that datatype are either supported in this release or something went wrong..")
