@@ -9,6 +9,7 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 import module namespace wp-export-data = "http://www.xmlmachines.com/wp-export-data" at "/lib/wp-export-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
+import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy";
 
 declare variable $fname as xs:string := xdmp:get-request-field("fname", ());
 
@@ -24,6 +25,9 @@ declare variable $fname as xs:string := xdmp:get-request-field("fname", ());
 (: TODO - copypaste from load-data.xqy - make loaddata a module or add to wp-export-data? :)
 
 (
+(: insert config :)
+(: TODO - what if we have multiple configurations? :)
+( xdmp:document-insert($consts:CONFIG-DOC-URI, wp-export-data:get-configuration()), "configuration file loaded/updated" ),
 (: insert authors :)
 for $x in wp-export-data:get-authors() return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "authors" ), "1 author loaded ok"), 
 (: insert categories :)

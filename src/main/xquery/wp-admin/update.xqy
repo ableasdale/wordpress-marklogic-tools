@@ -54,15 +54,40 @@ return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x,
     xdmp:redirect-response("/wp-admin/categories.xqy?msg=created"))   
 };
 
-declare function local:process-tag(){
+declare function local:process-tag() {
+(: TODO - this isn't wired in :)
 let $x := 
 <wp:tag>
     <wp:term_id>{ml-wp-data:get-highest-term-id() + 1}</wp:term_id>
-    <wp:tag_slug>test</wp:tag_slug>
-    <wp:tag_name>test</wp:tag_name>
+    <wp:tag_slug>{fn:lower-case(fn:replace($title, " ", "-"))}</wp:tag_slug>
+    <wp:tag_name>{$title}</wp:tag_name>
     <wp:tag_description>do people really describe tags?</wp:tag_description>
 </wp:tag>
 return $x
+};
+	
+declare function local:process-configuration() {
+	
+
+	let $email-address := xdmp:get-request-field("email-address")
+
+
+	let $node := mem:node-replace($doc//title, element title {xdmp:get-request-field("title")})
+	let $node := mem:node-replace($doc//description, element description {xdmp:get-request-field("tagline")})
+	let $node := mem:node-replace($doc//wp:base_blog_url, element wp:base_blog_url {xdmp:get-request-field("wp-address-url")})
+	let $node := mem:node-replace($doc//wp:base_site_url, element wp:base_site_url {xdmp:get-request-field("wp-site-url")})
+
+
+
+return
+
+	(
+
+
+	$node
+	
+	
+	)
 };
 
 (: Is it an item, a category or other? :)
@@ -72,4 +97,6 @@ else if ($type eq "category")
 then (local:process-category())
 else if ($type eq "tag")
 then (local:process-tag())
+else if ($type eq "configuration")
+then (local:process-configuration())
 else ("Updates for that datatype are either supported in this release or something went wrong..")

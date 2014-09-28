@@ -11,7 +11,6 @@ declare variable $doc := doc($consts:CONFIG-DOC-URI);
 
 view-tools:create-wp-admin-html-page("General Settings", (),
     <div id="settings">
-        <!-- h2>General Settings</h2 -->
         
         <form role="form" class="form-horizontal" action="/wp-admin/update.xqy" method="post">
             <div class="well">
@@ -92,7 +91,17 @@ view-tools:create-wp-admin-html-page("General Settings", (),
                         }
                     </div>
                 </div>
-                
+		{element input {
+                    attribute type {"hidden"},
+                    attribute name {"uri"},
+                    attribute value {xdmp:node-uri($doc)}
+                }}
+
+                {element input {
+                    attribute type {"hidden"},
+                    attribute name {"type"},
+                    attribute value {"configuration"}
+                }}
                 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
@@ -108,6 +117,7 @@ view-tools:create-wp-admin-html-page("General Settings", (),
 
 
 xdmp:document-insert("/app-configuration.xml",
+(: TODO - note this was changed to configuration! :)
 <app-configuration>
   <title>Test2</title>
   <link>http://localhost</link>

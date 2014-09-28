@@ -21,6 +21,21 @@ declare function wp-export-data:get-channel() {
     else($consts:IMPORT)
 };
 
+declare function wp-export-data:get-configuration() {
+	element configuration {	
+		wp-export-data:get-channel()/title,
+		wp-export-data:get-channel()/link,
+		wp-export-data:get-channel()/description,
+		wp-export-data:get-channel()/pubDate,
+		wp-export-data:get-channel()/language,
+		wp-export-data:get-channel()/wp:wxr_version,
+		wp-export-data:get-channel()/wp:base_site_url,
+		wp-export-data:get-channel()/wp:base_blog_url,
+		wp-export-data:get-channel()/generator
+	}
+};
+
+
 declare function wp-export-data:get-authors() {
   wp-export-data:get-channel()/wp:author
 };
