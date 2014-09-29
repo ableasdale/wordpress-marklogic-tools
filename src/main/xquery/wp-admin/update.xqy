@@ -67,17 +67,12 @@ return $x
 };
 	
 declare function local:process-configuration() {
-	
-
 	let $email-address := xdmp:get-request-field("email-address")
-
-
 	let $node := mem:node-replace($doc//title, element title {xdmp:get-request-field("title")})
 	let $node := mem:node-replace($node//description, element description {xdmp:get-request-field("tagline")})
 	let $node := mem:node-replace($node//wp:base_blog_url, element wp:base_blog_url {xdmp:get-request-field("wp-address-url")})
 	let $node := mem:node-replace($node//wp:base_site_url, element wp:base_site_url {xdmp:get-request-field("wp-site-url")})
-
-return $node	
+    return (xdmp:document-insert($consts:CONFIG-DOC-URI, $node), xdmp:redirect-response("/wp-admin/dashboard.xqy?msg=updated"))	
 };
 
 (: Is it an item, a category or other? :)
