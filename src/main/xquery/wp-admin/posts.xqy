@@ -9,9 +9,17 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="page-header">
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
-             
+        
+        <form action="/wp-admin/bulk.xqy" method="post">
+        <select name="bulk-actions">
+			<option value="-1">Bulk Actions...</option>
+			<option value="publish">Publish</option>
+			<option value="delete">Delete</option>			
+		</select>
+		<input type="submit"/>
+        
         <table class="table table-striped table-bordered">
-            {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
+            {view-tools:create-thead-element(("", "ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
             <!-- TODO - and parameterise this  -->
             <tbody>
                 {
@@ -21,6 +29,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         if (fn:not($x/wp:status eq "publish"))
                         then (attribute class {"info"})
                         else (),
+                        element td {element input { attribute type {"checkbox"}, attribute name {fn:string($x/wp:post_id)} }},
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
                         element td {string($x/title)},
                         element td {string($x/wp:status)},                              
@@ -38,6 +47,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                 }
             </tbody>
         </table>
+        </form>
     </div>)
 
 
