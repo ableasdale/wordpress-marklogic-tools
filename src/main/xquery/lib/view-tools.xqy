@@ -179,10 +179,9 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                             </span>
                          </div>
                     </form>
-                </div>
-                
+                </div>  
             </div>
-        </div
+        </div>
 };
 
 declare private function view-tools:alert-user($level, $message, $is-dismissible) {
