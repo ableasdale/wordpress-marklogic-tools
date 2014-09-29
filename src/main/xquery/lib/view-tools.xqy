@@ -11,11 +11,17 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 <html lang="en">
     {$head}    
     <body role="document">
-        {$content},
+        {$content}
+        {view-tools:footer()}
         {view-tools:javascript-footer()}
     </body>    
 </html>
 )};
+
+declare function view-tools:footer() as element(footer) {
+    (: <!-- TODO - use TWB classes for this! --> :)
+    <footer><p align="center">&copy; 2014 MarkPress</p></footer>  
+};
 
 declare function view-tools:javascript-footer(){
     (
@@ -116,7 +122,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">MarkPress</a>
+                    <a class="navbar-brand" href="/">MarkPress</a>
                 </div>
                 
                 <div class="navbar-collapse collapse">
@@ -176,20 +182,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                 </div>
                 
             </div>
-        </div>
-
-
-
-    (: Simplified nav 
-    <ul id="wp-admin-nav">
-        <li><a href="/dashboard.xqy">Dashboard</a></li>
-        <li><a href="/posts.xqy">Posts</a></li>
-        <li>Media</li>
-        <li><a href="/pages.xqy">Pages</a></li>
-        <li>Comments</li>
-        <li><a href="/users.xqy">Users</a></li>
-        <li>Tools</li>
-    </ul> :)
+        </div
 };
 
 declare private function view-tools:alert-user($level, $message, $is-dismissible) {
