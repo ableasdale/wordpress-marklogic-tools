@@ -73,21 +73,11 @@ declare function local:process-configuration() {
 
 
 	let $node := mem:node-replace($doc//title, element title {xdmp:get-request-field("title")})
-	let $node := mem:node-replace($doc//description, element description {xdmp:get-request-field("tagline")})
-	let $node := mem:node-replace($doc//wp:base_blog_url, element wp:base_blog_url {xdmp:get-request-field("wp-address-url")})
-	let $node := mem:node-replace($doc//wp:base_site_url, element wp:base_site_url {xdmp:get-request-field("wp-site-url")})
+	let $node := mem:node-replace($node//description, element description {xdmp:get-request-field("tagline")})
+	let $node := mem:node-replace($node//wp:base_blog_url, element wp:base_blog_url {xdmp:get-request-field("wp-address-url")})
+	let $node := mem:node-replace($node//wp:base_site_url, element wp:base_site_url {xdmp:get-request-field("wp-site-url")})
 
-
-
-return
-
-	(
-
-
-	$node
-	
-	
-	)
+return $node	
 };
 
 (: Is it an item, a category or other? :)
