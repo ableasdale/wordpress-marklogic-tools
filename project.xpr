@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="16.0">
+<project version="16.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="16.0" xml:space="preserve">
+            <serialized version="16.1" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>enable.project.master.files.support</String>
@@ -17,21 +17,6 @@
         <folder masterFiles="true" name="Master Files">
             <file name="src/main/xquery/default.xqy"/>
         </folder>
-        <file name="src/main/xquery/wp-admin/comments.xqy"/>
-        <file name="src/main/xquery/lib/consts.xqy"/>
-        <file name="src/main/xquery/wp-admin/dashboard.xqy"/>
-        <file name="src/main/xquery/wp-admin/editor.xqy"/>
-        <file name="src/main/xquery/wp-admin/explore-export.xqy"/>
-        <file name="src/main/xquery/wp-admin/export.xqy"/>
-        <file name="src/main/xquery/wp-admin/import-wp-export-file.xqy"/>
-        <file name="src/main/xquery/wp-admin/import.xqy"/>
-        <file name="src/main/xquery/wp-admin/load-data.xqy"/>
-        <file name="src/main/xquery/lib/ml-wp-data.xqy"/>
-        <file name="src/main/xquery/wp-admin/pages.xqy"/>
-        <file name="src/main/xquery/wp-admin/posts.xqy"/>
-        <file name="src/main/xquery/wp-admin/update.xqy"/>
-        <file name="src/main/xquery/wp-admin/users.xqy"/>
-        <file name="src/main/xquery/lib/view-tools.xqy"/>
-        <file name="src/main/xquery/lib/wp-export-data.xqy"/>
+        <folder path="src/"/>
     </projectTree>
 </project>
