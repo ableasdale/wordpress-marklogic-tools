@@ -31,7 +31,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                         else (),
                         element td {element input { attribute type {"checkbox"}, attribute name {fn:string($x/wp:post_id)} }},
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/wp:post_id))},
-                        element td {string($x/title)},
+                        element td {view-tools:create-href-link( fn:concat("/wp-admin/editor.xqy?id=",fn:string($x/wp:post_id)), string($x/title)) },
                         element td {string($x/wp:status)},                              
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {ml-wp-data:get-author-first-and-last-name-from-username(string($x/dc:creator))},

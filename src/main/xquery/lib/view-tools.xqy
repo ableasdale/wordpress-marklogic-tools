@@ -231,6 +231,10 @@ declare function view-tools:create-badge-link($href as xs:string, $linktext as x
     element a { attribute href {$href}, element span {attribute class {"badge"}, $linktext}}
 };
 
+declare function view-tools:create-href-link($href as xs:string, $linktext as xs:string) as element(a) {
+    element a { attribute href {$href}, $linktext }
+};
+
 declare function view-tools:create-tag-badge-link($href as xs:string, $linktext as xs:string) as element(a) {
     element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {"glyphicon glyphicon-tag"}, " "}," ",$linktext}}
 };
