@@ -9,15 +9,21 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="page-header">
         <h3>TODO filter by category, all dates, bulk actions etc...</h3>
-        
         <form action="/wp-admin/bulk.xqy" method="post">
-        <select name="bulk-actions">
-			<option value="-1">Bulk Actions...</option>
-			<option value="publish">Publish</option>
-			<option value="delete">Delete</option>			
-		</select>
-		<input type="submit"/>
-        
+
+        <!-- TODO - bulk actions should be parameterised! -->
+        <div class="well">
+            <div class="form-group">
+                <select class="form-control" name="bulk-actions">
+                    <option value="-1">Bulk Actions...</option>
+                    <option value="publish">Publish</option>
+                    <option value="delete">Delete</option>
+                </select>
+
+                <input type="submit"/>
+            </div>
+        </div>
+
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("", "ID", "Title", "Status", "Author", "Categories", "Tags", "Comments", "Date"))}
             <!-- TODO - and parameterise this  -->
