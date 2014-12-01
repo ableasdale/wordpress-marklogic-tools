@@ -38,16 +38,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                         <label for="status" class="control-label col-xs-2">Publish status</label>
                         
                         <div class="col-xs-3">
-                            <select class="form-control" name="status">
-                                {
-                                    for $x in ("draft", "pending", "publish")
-                                    return element option {attribute value {$x}, 
-                                        if ($item/wp:status/string() eq $x)
-                                        then (attribute selected {"selected"})
-                                        else(),
-                                        concat(upper-case(substring($x,1,1)), substring($x,2))}
-                                }
-                            </select>
+                            {view-tools:build-document-state-dropdown( $item/wp:status/string() )}
                         </div>
                     </div>
                     

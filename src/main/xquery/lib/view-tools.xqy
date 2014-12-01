@@ -239,6 +239,19 @@ declare function view-tools:create-tag-badge-link($href as xs:string, $linktext 
     element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {"glyphicon glyphicon-tag"}, " "}," ",$linktext}}
 };
 
+declare function view-tools:build-document-state-dropdown($state as xs:string) {
+    <select class="form-control" name="status">
+        {
+            for $x in ("draft", "pending", "publish")
+            return element option {attribute value {$x},
+                if ($state eq $x)
+                then (attribute selected {"selected"})
+                else(),
+                concat(upper-case(substring($x,1,1)), substring($x,2))}
+        }
+    </select>
+};
+
 (:
 <span class="glyphicon glyphicon-tag"></span>
 :)
