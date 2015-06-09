@@ -19,7 +19,7 @@ public class TestDashboardResource {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/dashboard.xqy").
                 then().log().body().statusCode(200).
-                body(containsString("<h2>Dashboard</h2>"));
+                body(containsString("<small>Dashboard</small>"));
     }
 
     @Test

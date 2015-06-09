@@ -19,6 +19,6 @@ public class TestPublicationWorkflow {
     public void TestPostsResource() {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/posts.xqy").
-                then().log().body().statusCode(200); //.body().parser(). why did i check this in???
+                then().log().body().statusCode(200).body(containsString("<small>Posts</small>"));
     }
 }

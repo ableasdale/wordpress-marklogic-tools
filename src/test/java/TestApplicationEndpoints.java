@@ -29,7 +29,7 @@ public class TestApplicationEndpoints {
     public void TestDashboardResource() {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/dashboard.xqy").
-                then().log().body().statusCode(200).body(containsString("<h2>Dashboard</h2>"));
+                then().log().body().statusCode(200).body(containsString("<small>Dashboard</small>"));
     }
 
     /**
@@ -39,7 +39,7 @@ public class TestApplicationEndpoints {
     public void TestPostsResource() {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/posts.xqy").
-                then().log().body().statusCode(200).body(containsString("<h2>Posts</h2>"));
+                then().log().body().statusCode(200).body(containsString("<small>Posts</small>"));
     }
 
     /**
@@ -49,7 +49,7 @@ public class TestApplicationEndpoints {
     public void TestPagesResource() {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/pages.xqy").
-                then().log().body().statusCode(200).body(containsString("<h2>Pages</h2>"));
+                then().log().body().statusCode(200).body(containsString("<small>Pages</small>"));
     }
 
     /**
@@ -59,6 +59,6 @@ public class TestApplicationEndpoints {
     public void TestCommentsResource() {
         given().when().auth().basic("q", "q").
                 get("http://localhost:8003/wp-admin/comments.xqy").
-                then().log().body().statusCode(200).body(containsString("<h2>Comments</h2>"));
+                then().log().body().statusCode(200).body(containsString("<small>Comments</small>"));
     }
 }

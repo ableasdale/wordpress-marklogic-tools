@@ -19,8 +19,11 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 )};
 
 declare function view-tools:footer() as element(footer) {
-    (: <!-- TODO - use TWB classes for this! --> :)
-    <footer><p align="center">&copy; 2014 MarkPress</p></footer>  
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">MarkLogic WordPress Tools - v0.1 PRE - (MMXIV - MMXV)</p>
+        </div>
+    </footer>    
 };
 
 declare function view-tools:javascript-footer(){
@@ -42,7 +45,26 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
     <title>{$title}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="/wp-admin/css/styles.css" />    
+    <link rel="stylesheet" href="/wp-admin/css/styles.css" />
+    <style type="text/css"><![CDATA[
+    /* Sticky footer styles */
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .footer .container {
+            text-align:center;
+            margin-top:4em;
+        }
+        ]]>
+    </style>    
 	{$additional-content}
 </head>
 )
@@ -90,11 +112,11 @@ declare function view-tools:get-tiny-mce-js(){
 declare function view-tools:create-wp-admin-html-page($title as xs:string, $head, $content) { 
     let $pagebody := (
     <div class="container">
-		<div class="sixteen columns">
-            <h2>{$title}</h2>
+		<div class="row">
+            <h2>MarkPress <small>{$title}</small></h2>
             {view-tools:wp-admin-navigation()}
-            {$content}
-        </div>      
+        </div>  
+        {$content}            
     </div>
     )
     return view-tools:create-html-page(view-tools:create-wp-admin-html-head($title, $head), $pagebody)
@@ -122,7 +144,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">MarkPress</a>
+                    <img style="margin: 0.65em 0.4em 0 0.7em;" src="/assets/images/marklogic.png"/>
                 </div>
                 
                 <div class="navbar-collapse collapse">
