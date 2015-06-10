@@ -6,7 +6,7 @@ import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at 
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 view-tools:create-wp-admin-html-page("Users", (),
-    <div id="users">
+    <div id="users" class="row">
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("Users", "Name", "Email", "Role", "Posts"))}
             <tbody>

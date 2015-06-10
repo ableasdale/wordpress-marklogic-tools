@@ -14,7 +14,7 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 declare variable $message := xdmp:get-request-field("msg");
 
 view-tools:create-wp-admin-html-page("Import", (),        
-    <div id="import">        
+    <div id="import" class="row">        
 
         <div class="bs-callout bs-callout-info">
             <h4>Important note about configuration</h4>

@@ -7,8 +7,8 @@ import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at 
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 view-tools:create-wp-admin-html-page("Posts", (),
-    <div id="posts" class="page-header">
-        <h3>TODO filter by category, all dates, bulk actions etc...</h3>
+    <div id="posts" class="row">
+        <h4>TODO filter by category, all dates, bulk actions etc...</h4>
         <form action="/wp-admin/bulk.xqy" method="post">
 
         <!-- TODO - bulk actions should be parameterised! -->

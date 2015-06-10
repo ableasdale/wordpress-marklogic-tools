@@ -53,7 +53,7 @@ declare function local:tag-form() {
 
 
 view-tools:create-wp-admin-html-page("Tags", (),
-    <div id="tags">
+    <div id="tags" class="row">
         <h3>Create Tag</h3>
         {local:tag-form()}
         <h3>Tags</h3>

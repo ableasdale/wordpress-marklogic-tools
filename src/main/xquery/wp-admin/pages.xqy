@@ -7,7 +7,7 @@ import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at 
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 view-tools:create-wp-admin-html-page("Pages", (),
-    <div id="pages">
+    <div id="pages" class="row">
         <h3>TODO filter by all dates, bulk actions etc...</h3>
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Comments", "Date"))}

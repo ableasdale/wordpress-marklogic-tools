@@ -10,7 +10,7 @@ import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at 
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
 view-tools:create-wp-admin-html-page("Comments", (),
-    <div id="comments">
+    <div id="comments" class="row">
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("Author", "Comment", "In Response To"))}
             <tbody>

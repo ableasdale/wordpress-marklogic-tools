@@ -13,7 +13,7 @@ declare variable $item as element(item) := ml-wp-data:get-wp-post-by-id($id)/nod
 (: TODO - skanky handling if you don't pass in an id - trigger a nice error message :)
 
 view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
-    <div id="editor">
+    <div id="editor" class="row">
         {if ($id eq 0)
          then ( view-tools:warning-notification( " You are currently creating a new post.", true()) )
          else ( view-tools:info-notification ( (element strong {"Notice "}, "You are currently editing a post with the status of ", element strong {$item/wp:status/string()}, " with the post id ", fn:concat("#", $id, ":&quot;", $item/title/string(),"&quot;") ), false()) )

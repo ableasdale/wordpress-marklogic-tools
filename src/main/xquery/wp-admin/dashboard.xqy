@@ -13,7 +13,7 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 declare variable $message := xdmp:get-request-field("msg");
 
 view-tools:create-wp-admin-html-page("Dashboard", (),        
-    <div id="dashboard">     
+    <div id="dashboard" class="row">     
         {if (not(empty(xdmp:get-server-field("filename")))) 
         then (view-tools:info-notification( (<strong>Filename is currently set: </strong> || xdmp:get-server-field("filename")), false() ) )
         else ()
@@ -24,7 +24,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                         " TODO - provide more information about what was just updated"), true() )
         )
         else ()}
-        <div class="row">
+        
             <div class="col-sm-4">    
                 {view-tools:summary-widget("At a Glance")}    
                 <div class="panel panel-default">
@@ -63,5 +63,5 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                     </div>
                 </div>
             </div>
-        </div>
+        
     </div>)

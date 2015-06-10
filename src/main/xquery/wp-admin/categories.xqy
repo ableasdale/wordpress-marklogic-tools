@@ -28,88 +28,88 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 :)
 
 declare function local:category-form() {
-<form role="form" class="form-horizontal" action="/wp-admin/update.xqy" method="post">
-    <div class="well">
-
-         <div class="form-group">
-            <label for="cat-name" class="control-label col-sm-3">Name</label>
-            <div class="col-sm-9">
-                <div class="input-group">
+    <form role="form" class="form-horizontal" action="/wp-admin/update.xqy" method="post">
+        <div class="well">
+    
+             <div class="form-group">
+                <label for="cat-name" class="control-label col-sm-3">Name</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        {
+                        element input {
+                                attribute type {"text"},
+                                attribute class {"form-control"},
+                                attribute name {"title"}, (: Note this is renamed so the req. field can be used for either cat or article :)
+                                attribute id {"cat-name"}
+                            }             
+                        }
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk req">{" "}</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+    
+            <div class="form-group">
+                <label for="tagline" class="control-label col-sm-3">Slug</label>
+                <div class="col-sm-9">
                     {
                     element input {
                             attribute type {"text"},
                             attribute class {"form-control"},
-                            attribute name {"title"}, (: Note this is renamed so the req. field can be used for either cat or article :)
-                            attribute id {"cat-name"}
+                            attribute name {"tagline"},
+                            attribute id {"tagline"}
                         }             
                     }
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk req">{" "}</span></span>
+                    <span class="help-block">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.  <strong>This will be generated for you.</strong></span>
                 </div>
             </div>
-        </div>
-        
-        
-        
-
-        <div class="form-group">
-            <label for="tagline" class="control-label col-sm-3">Slug</label>
-            <div class="col-sm-9">
-                {
-                element input {
-                        attribute type {"text"},
-                        attribute class {"form-control"},
-                        attribute name {"tagline"},
-                        attribute id {"tagline"}
-                    }             
-                }
-                <span class="help-block">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.  <strong>This will be generated for you.</strong></span>
+            
+            <div class="form-group">
+                <label for="wp-address-url" class="control-label col-sm-3">Parent</label>
+                <div class="col-sm-9">
+                    {
+                    element input {
+                            attribute type {"text"},
+                            attribute class {"form-control"},
+                            attribute name {"wp-address-url"},
+                            attribute placeholder {"TODO"},
+                            attribute id {"wp-address-url"}
+                        }             
+                    }
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="wp-address-url" class="control-label col-sm-3">Parent</label>
-            <div class="col-sm-9">
-                {
-                element input {
-                        attribute type {"text"},
-                        attribute class {"form-control"},
-                        attribute name {"wp-address-url"},
-                        attribute placeholder {"TODO"},
-                        attribute id {"wp-address-url"}
-                    }             
-                }
+            
+            <div class="form-group">
+                <label for="description" class="control-label col-sm-3">Description</label>
+                <div class="col-sm-9">
+                    
+                    {
+                    element input {
+                            attribute type {"text"},
+                            attribute class {"form-control"},
+                            attribute name {"article"}, (: Note this is renamed so the req. field can be used for either cat or article :)
+                            attribute id {"description"}
+                        }             
+                    }
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="description" class="control-label col-sm-3">Description</label>
-            <div class="col-sm-9">
-                
-                {
-                element input {
-                        attribute type {"text"},
-                        attribute class {"form-control"},
-                        attribute name {"article"}, (: Note this is renamed so the req. field can be used for either cat or article :)
-                        attribute id {"description"}
-                    }             
-                }
+            
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Create Category</button>
+                </div>
             </div>
+            
+            <input type="hidden" name="id" value="0" />
+            <input type="hidden" name="type" value="category" />
         </div>
-        
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save mr1e">{" "}</span>Create Category</button>
-            </div>
-        </div>
-        
-        <input type="hidden" name="id" value="0" />
-        <input type="hidden" name="type" value="category" />
-    </div>
-</form>
+    </form>
 };
 
 view-tools:create-wp-admin-html-page("Categories", (),
-    <div id="categories">
+    <div id="categories" class="row">
         <h3>Create Category</h3>
         {local:category-form()}
         <h3>Categories</h3>
