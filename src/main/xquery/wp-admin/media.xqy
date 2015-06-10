@@ -38,7 +38,9 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {
                         
                         (: TODO - make clickable :)
-                        element a {element img {attribute class {"img-thumbnail small-thumbnail"}, attribute src{$x/guid}}}
+                        element div { attribute class {"small-thumbnail"},
+                        element a {element img {attribute class {"img-thumbnail"}, attribute src{$x/guid}}}
+                        }
                         
                         },
                         element td {string($x/wp:post_name)},                       

@@ -65,8 +65,29 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
             padding-top:2em;   
         }
         
-        /* Thumbnail */
+        /* Thumbnail 
         .small-thumbnail {width:100px; height:100px;}
+        */
+        .small-thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.small-thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.small-thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
         ]]>
     </style>    
 	{$additional-content}
