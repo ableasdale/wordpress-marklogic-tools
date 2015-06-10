@@ -17,7 +17,7 @@ view-tools:create-wp-admin-html-page("Comments", (),
                 {
                     for $x in ml-wp-data:get-comments()
                     return element tr {
-                        element td { string($x//wp:comment_author),  string($x//wp:comment_author_url) },
+                        element td { string($x//wp:comment_author)}, (: ,  string($x//wp:comment_author_url)  :) 
                         element td { "Submitted on ", string($x//wp:comment_date), "TODO - this links back to a post on the blog page ", string($x//wp:comment_content) },
                         element td { string(fn:root($x)//title) }
                     }

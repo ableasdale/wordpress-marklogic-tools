@@ -55,14 +55,18 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
         
         .footer {
             position: absolute;
-            bottom: 0;
+            bottom: 0;            
             width: 100%;
+            height:2em;
         }
         
         .footer .container {
-            text-align:center;
-            margin-top:4em;
+            text-align:center;            
+            padding-top:2em;   
         }
+        
+        /* Thumbnail */
+        .small-thumbnail {width:100px; height:100px;}
         ]]>
     </style>    
 	{$additional-content}
@@ -132,6 +136,8 @@ declare function view-tools:create-input-element($type as xs:string, $class as x
     }
 };
 
+(: declare function view-tools:create-navbar-links - TODO - this needs to be done when the rewriter is hooked up :)
+
 declare function view-tools:wp-admin-navigation() as element(div) {
         <div class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -140,8 +146,6 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                         data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <img style="margin: 0.65em 0.4em 0 0.7em;" src="/assets/images/marklogic.png"/>
@@ -163,9 +167,8 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                                 <li><a href="/wp-admin/tags.xqy">Tags</a></li>
                             </ul>
                         </li>
-                        
-                        
-                        <li><a href="#media">Media</a></li>
+
+                        <li class="active"><a href="/wp-admin/media.xqy">Media</a></li>
                         <li><a href="/wp-admin/pages.xqy">Pages</a></li>
                         <li><a href="/wp-admin/comments.xqy">Comments</a></li>
                         <li><a href="/wp-admin/users.xqy">Users</a></li>

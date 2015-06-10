@@ -18,7 +18,7 @@ return local-name($i)
 (: stuff at the start :)
 
 (
-(: insert authors :)
+(: insert authors - TODO - check first to see whether this user already exists - otherwise you're going to break! :)
 for $x in wp-export-data:get-authors() return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "authors" ), "1 author loaded ok"), 
 (: insert categories :)
 for $x in wp-export-data:get-categories() return (xdmp:document-insert(fn:concat("/",xdmp:md5(xdmp:quote($x)),".xml"), $x, (), "categories" ), "1 category loaded ok"),

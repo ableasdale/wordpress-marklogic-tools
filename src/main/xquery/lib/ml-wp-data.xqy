@@ -42,6 +42,14 @@ declare function ml-wp-data:get-items() {
   return $x
 };
 
+declare function ml-wp-data:get-media() {
+    cts:search(fn:doc(), 
+        cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), "attachment"), cts:collection-query(("items")) ))              
+    )
+
+(: //*:post_type[. eq "attachment"]/root() :)
+};
+
 declare function ml-wp-data:get-pages() {
     cts:search(fn:doc(), 
         cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), "page"), cts:collection-query(("items")) ))              
@@ -98,7 +106,9 @@ declare function ml-wp-data:get-author-by-username($username as xs:string) as do
 
 declare function ml-wp-data:get-author-first-and-last-name-from-username($name as xs:string) as xs:string {
     let $x := ml-wp-data:get-author-by-username($name)
-    return string($x//wp:author_first_name) || " " || string($x/wp:author_last_name)
+    return if (not(($x//wp:author_first_name)/node()))
+    then($x//wp:author_display_name)
+    else(string($x//wp:author_first_name) || " " || string($x/wp:author_last_name))    
 };
 
 declare function ml-wp-data:get-posts-by-authorname($username as xs:string) {
