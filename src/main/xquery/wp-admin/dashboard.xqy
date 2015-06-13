@@ -24,7 +24,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                         " TODO - provide more information about what was just updated"), true() )
         )
         else ()}
-        
+        <div class="row">
             <div class="col-sm-4">    
                 {view-tools:summary-widget("At a Glance")}    
                 <div class="panel panel-default">
@@ -63,5 +63,5 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
                     </div>
                 </div>
             </div>
-        
+        </div>
     </div>)
