@@ -26,5 +26,5 @@ local:create-http-application-server()
 Modify: **\wordpress-marklogic-tools\src\main\xquery\lib\consts.xqy** to set the import directory
 
 ```
-declare variable $DIRECTORIES as xs:string+ := ("D:\workspace\wordpress-marklogic-tools\sample-exports");
+declare variable $DIRECTORIES as xs:string+ := ("/Users/alexbleasdale/wordpress-marklogic-tools/sample-exports");
 ```

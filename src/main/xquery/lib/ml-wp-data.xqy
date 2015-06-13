@@ -99,16 +99,29 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
 
 (: TODO - had to slacken the document-node() return type; we don't really have a proper mechanism for handling WP users - this is necessary! :)
 declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node()? {
-    cts:search(fn:doc(), 
+
+   (: TODO - there are  apparent conditions where authors are not listed - a bug or simply user restrictions in WP - I need to figure out how this happens :)
+   
+   if(collection("authors"))
+   then (
+       cts:search(fn:doc(), 
         cts:and-query(( cts:element-value-query(xs:QName("wp:author_login"), string($username)), cts:collection-query(("authors")) ))              
     )
+   )
+   (: else we can't do anything because no author data was imported TODO / FIXME :)
+   else()
+   
 };
 
 declare function ml-wp-data:get-author-first-and-last-name-from-username($name as xs:string) as xs:string {
     let $x := ml-wp-data:get-author-by-username($name)
-    return if (not(($x//wp:author_first_name)/node()))
-    then($x//wp:author_display_name)
-    else(string($x//wp:author_first_name) || " " || string($x/wp:author_last_name))    
+    return if ($x) 
+    then (
+        if (not(($x//wp:author_first_name)/node()))
+        then($x//wp:author_display_name)
+        else(string($x//wp:author_first_name) || " " || string($x/wp:author_last_name))    
+    )
+    else ("TODO - NOAUTHOR")
 };
 
 declare function ml-wp-data:get-posts-by-authorname($username as xs:string) {
