@@ -189,7 +189,18 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                             </ul>
                         </li>
 
-                        <li class="active"><a href="/wp-admin/media.xqy">Media</a></li>
+                        <!-- TODO - paginate media view to save stessing the webserver by requesting *all* images stored in WP -->
+                        <li class="dropdown">
+                            <a href="/wp-admin/media.xqy" class="dropdown-toggle" data-toggle="dropdown">Media <span class="caret"></span></a>                       
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/wp-admin/media.xqy">Library</a></li>
+                                <li><a href="/wp-admin/upload.xqy">Add New</a></li>                                
+                            </ul>
+                        </li>
+
+                        <!-- TODO - remember to wire up actives when rest rewriter is hooked up <li class="active"><a href="/wp-admin/media.xqy">Media</a></li> -->
+                        
+                        
                         <li><a href="/wp-admin/pages.xqy">Pages</a></li>
                         <li><a href="/wp-admin/comments.xqy">Comments</a></li>
                         <li><a href="/wp-admin/users.xqy">Users</a></li>
