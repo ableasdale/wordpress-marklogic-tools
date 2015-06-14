@@ -37,7 +37,7 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {element input { attribute type {"checkbox"}, attribute name {fn:string($x/wp:post_id)} }},
                         element td {
                         
-                        (: TODO - make clickable 
+                        (: TODO - make a summary page on clicking on image link that works in the same way that wordpress does ... 
                         element div { attribute class {"small-thumbnail"},
                         element a {element img {attribute class {"img-thumbnail"}, attribute src{$x/guid}}}
                         } :)
@@ -51,7 +51,7 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {string($x/wp:post_name)},                       
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {ml-wp-data:get-author-first-and-last-name-from-username(string($x/dc:creator))},
-                        element td {"TODO"},
+                        element td { "TODO" (: element textarea {ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) } :) },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}                       
                     }   
@@ -63,57 +63,36 @@ view-tools:create-wp-admin-html-page("Media", (),
 
 
 (:
-
-<item>
-        <title>Hello world!</title>
-    <link>http://localhost:8080/wordpress/?p=1</link>
-    <pubDate>Thu, 21 Aug 2014 12:19:53 +0000</pubDate>
-    <dc:creator>wp-admin</dc:creator>
-    <guid isPermaLink="false">http://localhost:8080/wordpress/?p=1</guid>
+<?xml version="1.0" encoding="UTF-8"?>
+<item xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+    <title>portrait-img</title>
+    <link>http://127.0.0.1:4001/wordpress/?attachment_id=75</link>
+    <pubDate>Sat, 13 Jun 2015 20:33:01 +0000</pubDate>
+    <dc:creator>admin</dc:creator>
+    <guid isPermaLink="false">http://127.0.0.1:4001/wordpress/wp-content/uploads/2015/06/portrait-img.png</guid>
     <description/>
-    <content:encoded>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</content:encoded>
+    <content:encoded/>
     <excerpt:encoded/>
-    <wp:post_id>1</wp:post_id>
-    <wp:post_date>2014-08-21 12:19:53</wp:post_date>
-    <wp:post_date_gmt>2014-08-21 12:19:53</wp:post_date_gmt>
+    <wp:post_id>75</wp:post_id>
+    <wp:post_date>2015-06-13 20:33:01</wp:post_date>
+    <wp:post_date_gmt>2015-06-13 20:33:01</wp:post_date_gmt>
     <wp:comment_status>open</wp:comment_status>
     <wp:ping_status>open</wp:ping_status>
-    <wp:post_name>hello-world</wp:post_name>
-    <wp:status>publish</wp:status>
+    <wp:post_name>portrait-img</wp:post_name>
+    <wp:status>inherit</wp:status>
     <wp:post_parent>0</wp:post_parent>
     <wp:menu_order>0</wp:menu_order>
-    <wp:post_type>post</wp:post_type>
+    <wp:post_type>attachment</wp:post_type>
     <wp:post_password/>
     <wp:is_sticky>0</wp:is_sticky>
-    <category domain="category" nicename="uncategorised">Uncategorised</category>
-    <wp:comment>
-      <wp:comment_id>1</wp:comment_id>
-      <wp:comment_author>Mr WordPress</wp:comment_author>
-      <wp:comment_author_email/>
-      <wp:comment_author_url>https://wordpress.org/</wp:comment_author_url>
-      <wp:comment_author_IP/>
-      <wp:comment_date>2014-08-21 12:19:53</wp:comment_date>
-      <wp:comment_date_gmt>2014-08-21 12:19:53</wp:comment_date_gmt>
-      <wp:comment_content>Hi, this is a comment.
-To delete a comment, just log in and view the post&amp;#039;s comments. There you will have the option to edit or delete them.</wp:comment_content>
-      <wp:comment_approved>1</wp:comment_approved>
-      <wp:comment_type/>
-      <wp:comment_parent>0</wp:comment_parent>
-      <wp:comment_user_id>0</wp:comment_user_id>
-    </wp:comment>
-    <wp:comment>
-      <wp:comment_id>2</wp:comment_id>
-      <wp:comment_author>Foo Bar</wp:comment_author>
-      <wp:comment_author_email>foo@example.com</wp:comment_author_email>
-      <wp:comment_author_url>http://example.com</wp:comment_author_url>
-      <wp:comment_author_IP>::1</wp:comment_author_IP>
-      <wp:comment_date>2014-08-21 15:03:58</wp:comment_date>
-      <wp:comment_date_gmt>2014-08-21 14:03:58</wp:comment_date_gmt>
-      <wp:comment_content>Additional comment added</wp:comment_content>
-      <wp:comment_approved>1</wp:comment_approved>
-      <wp:comment_type/>
-      <wp:comment_parent>0</wp:comment_parent>
-      <wp:comment_user_id>2</wp:comment_user_id>
-    </wp:comment>
+    <wp:attachment_url>http://127.0.0.1:4001/wordpress/wp-content/uploads/2015/06/portrait-img.png</wp:attachment_url>
+    <wp:postmeta>
+      <wp:meta_key>_wp_attached_file</wp:meta_key>
+      <wp:meta_value>2015/06/portrait-img.png</wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+      <wp:meta_key>_wp_attachment_metadata</wp:meta_key>
+      <wp:meta_value>a:5:{s:5:"width";i:454;s:6:"height";i:800;s:4:"file";s:24:"2015/06/portrait-img.png";s:5:"sizes";a:3:{s:9:"thumbnail";a:4:{s:4:"file";s:24:"portrait-img-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:24:"portrait-img-170x300.png";s:5:"width";i:170;s:6:"height";i:300;s:9:"mime-type";s:9:"image/png";}s:14:"post-thumbnail";a:4:{s:4:"file";s:24:"portrait-img-454x198.png";s:5:"width";i:454;s:6:"height";i:198;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}</wp:meta_value>
+    </wp:postmeta>
   </item>
 :)
