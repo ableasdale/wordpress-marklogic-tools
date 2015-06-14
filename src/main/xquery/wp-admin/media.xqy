@@ -6,7 +6,10 @@ declare namespace dc = "http://purl.org/dc/elements/1.1/";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
-view-tools:create-wp-admin-html-page("Media", (),
+view-tools:create-wp-admin-html-page("Media", 
+(
+<script src="/assets/js/phpUnserialize.js">{" "}</script>
+), 
     <div id="posts" class="row">
         <h4>TODO filter by category, all dates, bulk actions etc... ALSO fix portrait oriented images by centering and add moment.js (lib aleady added). Then put in pagination so it retrieves a smaller number of images with each request.  Then make search work</h4>
         <form action="/wp-admin/bulk.xqy" method="post">
@@ -24,7 +27,7 @@ view-tools:create-wp-admin-html-page("Media", (),
         </div>
 
         <table class="table table-striped table-bordered">
-            {view-tools:create-thead-element(("", "Thumbnail", "File", "Author", "Uploaded to", "Metadata Node", "Comments", "Date"))}
+            {view-tools:create-thead-element(("", "Thumbnail", "File", "Author", "Uploaded to", "Metadata Node", "W x H", "Comments", "Date"))}
             <!-- TODO - and parameterise this  -->
             <tbody>
                 {
@@ -56,6 +59,9 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {
                             element textarea { ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) }
                         },                        
+                        element td {
+                            ml-wp-data:get-media-width-and-height(xdmp:node-uri($x))
+                        },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}                       
                     }   

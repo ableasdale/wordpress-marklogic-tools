@@ -18,7 +18,7 @@ declare variable $IMPORT as element(channel) := xdmp:document-get("E:\wordpress-
 declare variable $DIRECTORIES as xs:string+ := ("E:\wordpress-marklogic\", "E:\work\wordpress-marklogic-tools\sample-exports");
 :)
 
-
+declare variable $JAVA-CLASSPATH := xdmp:getenv("CLASSPATH");
 declare variable $EXPORT-FILENAME-DATETIME as xs:string := "[Y0001][M01][D01]-[H01][m01][s01]";
 declare variable $XML-DATETIME as xs:string := "[FNn,*-3], [D01] [MNn,*-3] [Y0001] [H01]:[m01]:[s01]"; 
 (: TODO - I think wordpress is choking on the BST time modifier here (+1) 

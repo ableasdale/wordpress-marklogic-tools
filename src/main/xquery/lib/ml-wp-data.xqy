@@ -209,3 +209,8 @@ document {
 declare function ml-wp-data:get-media-attachment-metadata($id as xs:string) as item()* {
     doc($id)//wp:postmeta[wp:meta_key eq "_wp_attachment_metadata"]/wp:meta_value/node()
 };
+
+declare function ml-wp-data:get-media-width-and-height($id as xs:string){
+  let $i := tokenize(tokenize(ml-wp-data:get-media-attachment-metadata($id),'\{')[2],";")
+  return (substring-after($i[2],":"), substring-after($i[4],":"))
+};
