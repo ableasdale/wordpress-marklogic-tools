@@ -24,7 +24,7 @@ view-tools:create-wp-admin-html-page("Media", (),
         </div>
 
         <table class="table table-striped table-bordered">
-            {view-tools:create-thead-element(("", "Thumbnail", "File", "Author", "Uploaded to", "Comments", "Date"))}
+            {view-tools:create-thead-element(("", "Thumbnail", "File", "Author", "Uploaded to", "Metadata Node", "Comments", "Date"))}
             <!-- TODO - and parameterise this  -->
             <tbody>
                 {
@@ -51,7 +51,11 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {string($x/wp:post_name)},                       
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {ml-wp-data:get-author-first-and-last-name-from-username(string($x/dc:creator))},
-                        element td { "TODO" (: element textarea {ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) } :) },
+                        (: ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) :)
+                        element td {"TODO"},
+                        element td {
+                            element textarea { ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) }
+                        },                        
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}                       
                     }   

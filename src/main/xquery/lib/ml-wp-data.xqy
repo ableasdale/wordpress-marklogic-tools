@@ -205,8 +205,7 @@ document {
 </item> }
 };
 
-(: TODO - always return this as JSON :)
-declare function ml-wp-data:get-media-attachment-metadata($id as xs:string) {
-(: TODO - returns a string for debugging - should be a JSON NODE :)
-    doc(concat("/",$id,".xml"))//wp:postmeta[wp:meta_key eq "_wp_attachment_metadata"]/wp:meta_value/string()
+(: TODO - always return this as JSON - UPDATE - WP source doesn't appear to be valid JSON!! not sure what it is... :)
+declare function ml-wp-data:get-media-attachment-metadata($id as xs:string) as item()* {
+    doc($id)//wp:postmeta[wp:meta_key eq "_wp_attachment_metadata"]/wp:meta_value/node()
 };

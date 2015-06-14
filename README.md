@@ -1,3 +1,6 @@
+## Prerequisites ##
+Requires MarkLogic 8 and a database (currently configured to use Documents) with the collection lexicon enabled
+
 ### Setup ###
 ```
 xquery version "1.0-ml";
