@@ -8,7 +8,7 @@ import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at 
 
 view-tools:create-wp-admin-html-page("Media", (),
     <div id="posts" class="row">
-        <h4>TODO filter by category, all dates, bulk actions etc...</h4>
+        <h4>TODO filter by category, all dates, bulk actions etc... ALSO fix portrait oriented images by centering and add moment.js (lib aleady added). Then put in pagination so it retrieves a smaller number of images with each request.  Then make search work</h4>
         <form action="/wp-admin/bulk.xqy" method="post">
 
         <!-- TODO - bulk actions should be parameterised! -->
@@ -37,10 +37,15 @@ view-tools:create-wp-admin-html-page("Media", (),
                         element td {element input { attribute type {"checkbox"}, attribute name {fn:string($x/wp:post_id)} }},
                         element td {
                         
-                        (: TODO - make clickable :)
+                        (: TODO - make clickable 
                         element div { attribute class {"small-thumbnail"},
                         element a {element img {attribute class {"img-thumbnail"}, attribute src{$x/guid}}}
+                        } :)
+                        element div { attribute class {"small-thumbnail img-thumbnail"},
+                            element a {attribute href {xdmp:node-uri($x)}, element img {attribute src{$x/guid}}}
+                            (: element img {attribute src{$x/guid}} :)
                         }
+                        
                         
                         },
                         element td {string($x/wp:post_name)},                       

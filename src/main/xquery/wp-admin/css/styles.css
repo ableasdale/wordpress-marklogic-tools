@@ -1,8 +1,4 @@
-
-td.tags span.badge {margin-right: 1em;}
-
 /* Base styles (regardless of theme) */
-
 .bs-callout {
     margin : 20px 0;
     padding : 15px 30px 15px 15px;
@@ -33,5 +29,48 @@ td.tags span.badge {margin-right: 1em;}
     border-color : #5bc0de;
 }
 
+/* Sticky footer styles */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;            
+    width: 100%;
+    height:2em;
+}
+
+.footer .container {
+    text-align:center;            
+    padding-top:2em;   
+}
+   
+/* Thumbnail positioning */
+        
+.small-thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.small-thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.small-thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+
+/* General CSS rules*/
+td.tags span.badge {margin-right: 1em;}
 .mr1e {margin-right:1em;}
 .req {color: red;}

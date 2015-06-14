@@ -28,8 +28,13 @@ declare function view-tools:footer() as element(footer) {
 
 declare function view-tools:javascript-footer(){
     (
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js">{" "}</script>,
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">{" "}</script>,
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">{" "}</script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">{" "}</script>,
+    <script><![CDATA[
+    // TODO - formatting..
+    moment().format();
+    ]]></script>
     )
 };
 
@@ -45,51 +50,7 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
     <title>{$title}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="/wp-admin/css/styles.css" />
-    <style type="text/css"><![CDATA[
-    /* Sticky footer styles */
-        html {
-            position: relative;
-            min-height: 100%;
-        }
-        
-        .footer {
-            position: absolute;
-            bottom: 0;            
-            width: 100%;
-            height:2em;
-        }
-        
-        .footer .container {
-            text-align:center;            
-            padding-top:2em;   
-        }
-        
-        /* Thumbnail 
-        .small-thumbnail {width:100px; height:100px;}
-        */
-        .small-thumbnail {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-}
-.small-thumbnail img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
-}
-.small-thumbnail img.portrait {
-  width: 100%;
-  height: auto;
-}
-        ]]>
-    </style>    
+    <link rel="stylesheet" href="/wp-admin/css/styles.css" />    
 	{$additional-content}
 </head>
 )
