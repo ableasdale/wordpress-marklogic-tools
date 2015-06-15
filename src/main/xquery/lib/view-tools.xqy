@@ -131,6 +131,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="icon-bar"></span>
                     </button>
                     <img id="nav-logo" src="/assets/images/marklogic.png"/>
+                    <img src="/assets/images/wordpress-logo-32.png"/>                    
                 </div>
                 
                 <div class="navbar-collapse collapse">
