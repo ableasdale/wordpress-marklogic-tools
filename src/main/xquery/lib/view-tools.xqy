@@ -130,7 +130,7 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img style="margin: 0.65em 0.4em 0 0.7em;" src="/assets/images/marklogic.png"/>
+                    <img id="nav-logo" src="/assets/images/marklogic.png"/>
                 </div>
                 
                 <div class="navbar-collapse collapse">
@@ -189,9 +189,9 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                             </ul>
                         </li>       
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form action="/wp-admin/search.xqy" method="post" class="navbar-form navbar-left" role="search">
                         <div class="input-group">
-                            <input type="text" class="form-control sm" placeholder="Search" />
+                            <input type="text" class="form-control sm" name="term" placeholder="Search" />
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
