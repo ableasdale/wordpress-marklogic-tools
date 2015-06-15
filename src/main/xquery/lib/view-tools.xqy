@@ -21,7 +21,7 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 declare function view-tools:footer() as element(footer) {
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">MarkLogic WordPress Tools - v0.1 PRE - (MMXIV - MMXV)</p>
+            <p class="text-muted">MLPress: WordPress, MarkLogic style - v0.1 PRE - (MMXIV - MMXV)</p>
         </div>
     </footer>    
 };
@@ -99,7 +99,7 @@ declare function view-tools:create-wp-admin-html-page($title as xs:string, $head
     let $pagebody := (
     <div class="container">
 		<div class="row">
-            <h2>MarkPress <small>{$title}</small></h2>
+            <h3>MLPress <small>{$title}</small></h3>
             {view-tools:wp-admin-navigation()}
         </div>  
         {$content}            
@@ -130,8 +130,8 @@ declare function view-tools:wp-admin-navigation() as element(div) {
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img id="nav-logo" src="/assets/images/marklogic.png"/>
-                    <img src="/assets/images/wordpress-logo-32.png"/>                    
+                    <img src="/assets/images/wordpress-logo-32.png"/>          
+                    <img id="nav-logo" src="/assets/images/marklogic.png"/>                              
                 </div>
                 
                 <div class="navbar-collapse collapse">
