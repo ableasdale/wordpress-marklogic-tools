@@ -45,7 +45,7 @@ view-tools:create-wp-admin-html-page("Media",
                         element a {element img {attribute class {"img-thumbnail"}, attribute src{$x/guid}}}
                         } :)
                         element div { attribute class {"small-thumbnail img-thumbnail"},
-                            element a {attribute href {xdmp:node-uri($x)}, element img {attribute src{$x/guid}}}
+                            element a {attribute href {xdmp:node-uri($x)}, element img {ml-wp-data:image-is-portrait(xdmp:node-uri($x)), attribute src{$x/guid}}}
                             (: element img {attribute src{$x/guid}} :)
                         }
                         

@@ -214,3 +214,7 @@ declare function ml-wp-data:get-media-width-and-height($id as xs:string){
   let $i := tokenize(tokenize(ml-wp-data:get-media-attachment-metadata($id),'\{')[2],";")
   return (substring-after($i[2],":"), substring-after($i[4],":"))
 };
+
+declare function ml-wp-data:image-is-portrait($id as xs:string) {
+    if(ml-wp-data:get-media-width-and-height($id)[2] gt ml-wp-data:get-media-width-and-height($id)[1]) then(attribute class {"portrait"}) else()
+};
