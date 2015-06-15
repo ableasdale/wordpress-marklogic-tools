@@ -14,7 +14,6 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
-
 (: We probably won't ever need to get the channel?
 declare function ml-wp-data:get-channel() {
   $consts:IMPORT
@@ -100,7 +99,7 @@ declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-nod
 (: TODO - had to slacken the document-node() return type; we don't really have a proper mechanism for handling WP users - this is necessary! :)
 declare function ml-wp-data:get-author-by-username($username as xs:string) as document-node()? {
 
-   (: TODO - there are  apparent conditions where authors are not listed - a bug or simply user restrictions in WP - I need to figure out how this happens :)
+   (: TODO - there are  apparent conditions where authors are not listed - a bug? or simply user restrictions in WP? - I need to figure out how this happens :)
    
    if(collection("authors"))
    then (
@@ -205,11 +204,13 @@ document {
 </item> }
 };
 
-(: TODO - always return this as JSON - UPDATE - WP source doesn't appear to be valid JSON!! not sure what it is... :)
+(: TODO - original plan was to return this as JSON - Unfortunately WP XML export source is not valid JSON!! 
+   Turns out it's the PHP Serialised format - which looks a little like JSON but isn't... :)
 declare function ml-wp-data:get-media-attachment-metadata($id as xs:string) as item()* {
     doc($id)//wp:postmeta[wp:meta_key eq "_wp_attachment_metadata"]/wp:meta_value/node()
 };
 
+(: As the XML text() containing this metadata is serialised PHP, there's no easy way of parsing it - using tokenize and grabbing the values I need for now :)
 declare function ml-wp-data:get-media-width-and-height($id as xs:string){
   let $i := tokenize(tokenize(ml-wp-data:get-media-attachment-metadata($id),'\{')[2],";")
   return (substring-after($i[2],":"), substring-after($i[4],":"))

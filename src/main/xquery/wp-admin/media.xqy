@@ -60,7 +60,7 @@ view-tools:create-wp-admin-html-page("Media",
                             element textarea { ml-wp-data:get-media-attachment-metadata(xdmp:node-uri($x)) }
                         },                        
                         element td {
-                            ml-wp-data:get-media-width-and-height(xdmp:node-uri($x))
+                            string-join(ml-wp-data:get-media-width-and-height(xdmp:node-uri($x))," x ")                            
                         },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
                         element td {string($x/wp:post_date)}                       
