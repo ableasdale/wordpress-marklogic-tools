@@ -2,7 +2,9 @@
 
 Imagine what it would be like to have a powerful blog application like WordPress built on a modern, highly scalable NoSQL document database like MarkLogic... 
 
-MLPress aims to be a WordPress compatible implementation of WordPress built on top of MarkLogic.  MLPress allows you to import your exported WordPress XML, to make edits and to re-export that XML and import it back into WordPress if required.
+MLPress aims to be a WordPress compatible implementation of WordPress built on top of MarkLogic.  
+
+MLPress allows you to import your exported WordPress XML, to make edits and to re-export that XML and import it back into WordPress if required.
 
 Features include:
 - 100% MarkLogic Goodness :)
@@ -11,10 +13,10 @@ Features include:
 - Allows the import of very large WordPress XML export files  
 
 ## How Complete is it? ##
-Basic import, edit and export work but the project is still under heavy development.
+Basic import, edit and export work but the project is still under heavy development.  Watch this space!
 
 ## Can I make feature requests? ##
-Absolutely! Please email me at alex.bleasdale@marklogic.com and feel free to create an issue in GitHub
+Absolutely! Please email me at alex.bleasdale@marklogic.com and/or feel free to create an issue in GitHub
 
 ## Prerequisites ##
 Requires MarkLogic 8 and a database (currently configured to use Documents) with the collection lexicon enabled
