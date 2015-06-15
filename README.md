@@ -22,6 +22,9 @@ Absolutely! Please email me at alex.bleasdale@marklogic.com and/or feel free to 
 Requires MarkLogic 8 and a database (currently configured to use Documents) with the collection lexicon enabled
 
 ### Setup ###
+
+Set the values below for your database, default application port and configure the module path to the project (replacing /ROOT/PATH/TO with the location on your filesystem where this project is checked out). 
+
 ```
 xquery version "1.0-ml";
 
@@ -29,7 +32,7 @@ import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic
 
 declare variable $DATABASE as xs:string := "Documents";
 declare variable $PORT as xs:unsignedLong := 8003;
-declare variable $PATH := "D:\workspace\wordpress-marklogic-tools\src\main\xquery";
+declare variable $PATH := "/ROOT/PATH/TO/wordpress-marklogic-tools/src/main/xquery";
 
 declare function local:create-http-application-server() {
   let $config := admin:get-configuration()
