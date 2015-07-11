@@ -29,8 +29,8 @@ declare function view-tools:footer() as element(footer) {
 declare function view-tools:javascript-footer(){
     (
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js">{" "}</script>,
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">{" "}</script>,
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">{" "}</script>,
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">{" "}</script>,
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">{" "}</script>,
     <script><![CDATA[
     // TODO - formatting..
     moment().format();
@@ -48,8 +48,8 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico" -->
     <title>{$title}</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="/wp-admin/css/styles.css" />    
 	{$additional-content}
 </head>
