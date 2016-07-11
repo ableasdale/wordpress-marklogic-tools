@@ -25,7 +25,7 @@ Requires MarkLogic 8 and a database (currently configured to use Documents) with
 
 Set the values below for your database, default application port and configure the module path to the project (replacing /ROOT/PATH/TO with the location on your filesystem where this project is checked out). 
 
-```
+```xquery
 xquery version "1.0-ml";
 
 import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
@@ -52,6 +52,6 @@ local:create-http-application-server()
 
 Modify: **\wordpress-marklogic-tools\src\main\xquery\lib\consts.xqy** to set the import directory
 
-```
+```xquery
 declare variable $DIRECTORIES as xs:string+ := ("/ROOT/PATH/TO/wordpress-marklogic-tools/sample-exports");
 ```
