@@ -28,7 +28,7 @@ declare function view-tools:footer() as element(footer) {
 
 declare function view-tools:javascript-footer(){
     (
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js">{" "}</script>,
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js">{" "}</script>,
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">{" "}</script>,
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">{" "}</script>,
     <script><![CDATA[
@@ -75,7 +75,7 @@ declare function view-tools:get-export-directories() {
 };
 
 declare function view-tools:get-tiny-mce-js(){
-    (<script src="https://tinymce.cachefly.net/4.1/tinymce.min.js">{" "}</script>,
+    (<script src="https://tinymce.cachefly.net/4.3/tinymce.min.js">{" "}</script>,
     <script language="javascript" type="text/javascript">
         <![CDATA[tinymce.init({
             selector : 'textarea', 
