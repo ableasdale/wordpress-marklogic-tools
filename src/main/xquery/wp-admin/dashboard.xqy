@@ -25,6 +25,7 @@ view-tools:create-wp-admin-html-page("Dashboard", (),
         )
         else ()}
         <div class="row">
+            <p>TODO - Range index :: {cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"))}</p>
             <div class="col-sm-4">    
                 {view-tools:summary-widget("At a Glance")}    
                 <div class="panel panel-default">
