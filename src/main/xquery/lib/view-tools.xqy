@@ -21,7 +21,7 @@ xdmp:set-response-content-type("text/html; charset=utf-8"),
 declare function view-tools:footer() as element(footer) {
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">MLPress: WordPress, MarkLogic style - v0.1 PRE - (MMXIV - MMXV)</p>
+            <p class="text-muted">MLPress: WordPress, MarkLogic style - v0.2 PRE - (MMXIV - MMXVI)</p>
         </div>
     </footer>    
 };
@@ -62,10 +62,12 @@ declare function view-tools:summary-widget($title as xs:string) {
       <h3 class="panel-title">{$title}</h3>
     </div>
     <div class="panel-body">
-        <p><a href="/wp-admin/posts.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-posts())}</span>Posts</a></p>
-        <p>TODO - how many published/pending etc..</p>     
-        <p><a href="/wp-admin/pages.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-pages())}</span>Pages</a></p>
-        <p><a href="/wp-admin/comments.xqy"><span class="badge mr1e">{fn:count(ml-wp-data:get-comments())}</span>Comments</a></p>
+    {
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(fn:count(ml-wp-data:get-posts()), " Posts"), "glyphicon glyphicon-pushpin")},
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(fn:count(ml-wp-data:get-pages()), " Pages"), "glyphicon glyphicon-book")},
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(fn:count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
+    }
+        <!-- p>TODO - how many published/pending etc..</p -->     
     </div>
 </div>
 };
@@ -256,6 +258,10 @@ declare function view-tools:create-href-link($href as xs:string, $linktext as xs
 
 declare function view-tools:create-tag-badge-link($href as xs:string, $linktext as xs:string) as element(a) {
     element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {"glyphicon glyphicon-tag"}, " "}," ",$linktext}}
+};
+
+declare function view-tools:create-glyphicon-badge-link($href as xs:string, $linktext as xs:string, $glyphicon as xs:string) as element(a) {
+    element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {$glyphicon}, " "}," ",$linktext}}
 };
 
 declare function view-tools:build-document-state-dropdown($state as xs:string) {

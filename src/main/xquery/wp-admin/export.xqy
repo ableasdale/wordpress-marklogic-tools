@@ -46,11 +46,9 @@ fn:format-dateTime(fn:current-dateTime(), $consts:EXPORT-FILENAME-DATETIME),".xm
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://www.example.com/TODO</wp:base_site_url>
 	<wp:base_blog_url>http://www.example.com/TODO</wp:base_blog_url>
-
     {ml-wp-data:get-authors()}
     {ml-wp-data:get-categories()}
     {ml-wp-data:get-terms()}
     {ml-wp-data:get-items()}
-
 </channel>
 </rss>)
