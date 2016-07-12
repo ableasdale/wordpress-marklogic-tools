@@ -28,7 +28,8 @@ view-tools:create-wp-admin-html-page("Media", (),
             <!-- TODO - and parameterise this  -->
             <tbody>
                 {
-                    for $x in ml-wp-data:get-media()/*
+                    (: TODO - locked at 20 so it doesn't do damage - fix with real pagination :)
+                    for $x in (ml-wp-data:get-media()/*)[1 to 20]
                     order by number($x/wp:post_id) descending
                     return element tr {
                         (: if (fn:not($x/wp:status eq "publish"))
