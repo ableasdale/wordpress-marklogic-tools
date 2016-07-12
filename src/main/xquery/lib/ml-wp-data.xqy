@@ -41,25 +41,19 @@ declare function ml-wp-data:get-items() {
   return $x
 };
 
-declare function ml-wp-data:get-media() {
-    cts:search(fn:doc(), 
-        cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), "attachment"), cts:collection-query(("items")) ))              
-    )
-
-(: //*:post_type[. eq "attachment"]/root() :)
+declare function ml-wp-data:type-query($type as xs:string, $estimate as xs:boolean) as item()* {
+    if ($estimate)
+    then (xdmp:estimate(cts:search(fn:doc(), cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), $type), cts:collection-query(("items")) )) )) )
+    else (cts:search(fn:doc(), cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), $type), cts:collection-query(("items")) )) ))
 };
 
-declare function ml-wp-data:get-pages() {
-    cts:search(fn:doc(), 
-        cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), "page"), cts:collection-query(("items")) ))              
-    )
-};
+declare function ml-wp-data:get-media() {ml-wp-data:type-query("attachment", false())};
+declare function ml-wp-data:get-pages() {ml-wp-data:type-query("page", false())};
+declare function ml-wp-data:get-posts() {ml-wp-data:type-query("post", false())};
+declare function ml-wp-data:get-total-media() {ml-wp-data:type-query("attachment", true())};
+declare function ml-wp-data:get-total-pages() {ml-wp-data:type-query("page", true())};
+declare function ml-wp-data:get-total-posts() {ml-wp-data:type-query("post", true())};
 
-declare function ml-wp-data:get-posts() {
-    cts:search(fn:doc(), 
-        cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), "post"), cts:collection-query(("items")) ))              
-    )
-};
 
 (: TODO - the two xpath fns below need to be sorted for calls to data in ML rather than from the WP Exported XML file :)
 declare function ml-wp-data:get-comments() {

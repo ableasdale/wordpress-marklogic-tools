@@ -63,9 +63,9 @@ declare function view-tools:summary-widget($title as xs:string) {
     </div>
     <div class="panel-body">
     {
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(fn:count(ml-wp-data:get-posts()), " Posts"), "glyphicon glyphicon-pushpin")},
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(fn:count(ml-wp-data:get-pages()), " Pages"), "glyphicon glyphicon-book")},
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(fn:count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), " Posts"), "glyphicon glyphicon-pushpin")},
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
+        element p {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
     }
         <!-- p>TODO - how many published/pending etc..</p -->     
     </div>

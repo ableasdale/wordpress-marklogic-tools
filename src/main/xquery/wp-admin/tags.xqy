@@ -27,7 +27,7 @@ declare function local:tag-form() {
             <label for="tag-slug" class="control-label col-sm-3">Slug</label>
             <div class="col-sm-9">
                 {view-tools:create-input-element("text", "form-control", "tag-slug", "tag-slug") }
-                <span class="help-block">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.  <strong>This will be generated for you.</strong></span>
+                <span class="help-block">The 'slug' is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.  <strong>This will be generated for you.</strong></span>
             </div>
         </div>
         
