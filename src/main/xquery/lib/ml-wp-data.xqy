@@ -17,26 +17,10 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
-(: We probably won't ever need to get the channel?
-declare function ml-wp-data:get-channel() {
-  $consts:IMPORT
-}; :)
-
-declare function ml-wp-data:get-authors() {
-  fn:collection("authors")
-};
-
-declare function ml-wp-data:get-terms() {
-  fn:collection("terms")
-};
-
-declare function ml-wp-data:get-categories() {
-  fn:collection("categories")
-};
-
-declare function ml-wp-data:get-tags() {
-  fn:collection("tags")
-};
+declare function ml-wp-data:get-authors() as document-node()* { fn:collection("authors") };
+declare function ml-wp-data:get-terms() as document-node()* { fn:collection("terms") };
+declare function ml-wp-data:get-categories() as document-node()* { fn:collection("categories") };
+declare function ml-wp-data:get-tags() as document-node()* { fn:collection("tags") };
 
 declare function ml-wp-data:get-items() {
   for $x in fn:collection("items")

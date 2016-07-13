@@ -51,7 +51,7 @@ declare function view-tools:javascript-footer() as element(script)+ {
     )
 };
 
-declare function view-tools:create-wp-admin-html-head($title as xs:string, $additional-content as item()?) as element(head) {
+declare function view-tools:create-wp-admin-html-head($title as xs:string, $additional-content as item()*) as element(head) {
 (
 <head>
     <meta charset="utf-8" />
