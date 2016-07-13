@@ -1,3 +1,4 @@
 .idea/
 target/
 sample-exports/
+.DS_Store
