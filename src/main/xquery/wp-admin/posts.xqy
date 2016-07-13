@@ -10,7 +10,7 @@ declare variable $filter as xs:string := xdmp:get-request-field("filter","");
 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="row">
-        <h4>TODO filter by category, all dates, bulk actions etc...</h4>
+        <h5>TODO filter by category, all dates, bulk actions etc...</h5>
         <form action="/wp-admin/bulk.xqy" method="post">
 
         <!-- TODO - bulk actions should be parameterised! -->
