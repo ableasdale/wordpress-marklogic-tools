@@ -56,32 +56,23 @@ declare function ml-wp-data:type-query($type as xs:string, $estimate as xs:boole
     else ( cts:search(fn:doc(), ml-wp-data:status-query($type)) )
 };
 
-declare function ml-wp-data:get-media() {ml-wp-data:type-query("attachment", false())};
-declare function ml-wp-data:get-pages() {ml-wp-data:type-query("page", false())};
-declare function ml-wp-data:get-posts($filter as xs:string?) {ml-wp-data:type-query("post", false())};
-declare function ml-wp-data:get-total-media() {ml-wp-data:type-query("attachment", true())};
-declare function ml-wp-data:get-total-pages() {ml-wp-data:type-query("page", true())};
-declare function ml-wp-data:get-total-posts() {ml-wp-data:type-query("post", true())};
-
+declare function ml-wp-data:get-media() as document-node()* { ml-wp-data:type-query("attachment", false()) };
+declare function ml-wp-data:get-pages() as document-node()* { ml-wp-data:type-query("page", false()) };
+declare function ml-wp-data:get-posts($filter as xs:string?) as document-node()* { ml-wp-data:type-query("post", false()) };
+declare function ml-wp-data:get-total-media() as xs:integer { ml-wp-data:type-query("attachment", true()) };
+declare function ml-wp-data:get-total-pages() as xs:integer { ml-wp-data:type-query("page", true()) };
+declare function ml-wp-data:get-total-posts() as xs:integer { ml-wp-data:type-query("post", true()) };
 
 (: TODO - the two xpath fns below need to be sorted for calls to data in ML rather than from the WP Exported XML file :)
-declare function ml-wp-data:get-comments() {
+declare function ml-wp-data:get-comments() as element(wp:comment)* {
     cts:search(fn:doc(), 
         cts:and-query(( cts:element-query(xs:QName("wp:comment"), cts:and-query(())), cts:collection-query(("items")) ))              
     )//wp:comment
 };
 
-declare function ml-wp-data:get-wp-post-ids() as xs:integer* {
-    ml-wp-data:get-items()/wp:post_id
-};
-
-declare function ml-wp-data:get-highest-post-id() as xs:double {
-    max(//wp:post_id)
-};
-
-declare function ml-wp-data:get-highest-term-id() as xs:double {
-    max(//wp:term_id)
-};
+declare function ml-wp-data:get-wp-post-ids() as xs:integer* { ml-wp-data:get-items()/wp:post_id };
+declare function ml-wp-data:get-highest-post-id() as xs:double { max(//wp:post_id) };
+declare function ml-wp-data:get-highest-term-id() as xs:double { max(//wp:term_id) };
 
 (: pages and posts both have a wp:post_id - this will grab either - NOTE this returns a document-node not an element :)
 declare function ml-wp-data:get-wp-post-by-id($id as xs:integer) as document-node() {
