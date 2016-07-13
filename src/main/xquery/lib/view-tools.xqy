@@ -92,7 +92,7 @@ declare function view-tools:create-range-frequency-badges($href as xs:string, $t
     return view-tools:create-badge-link( concat($href,"?filter=",$i), concat(cts:frequency($i), " ", $i))
 };
 
-declare function view-tools:get-export-directories() { 
+declare function view-tools:get-export-directories() as element(dir:directory)* { 
     for $i in $consts:DIRECTORIES return xdmp:filesystem-directory($i)
 };
 
@@ -117,7 +117,7 @@ declare function view-tools:get-tiny-mce-js() as element(script)+ {
     (: toolbar2: "print preview media | forecolor backcolor emoticons", :)
 };
 
-declare function view-tools:create-wp-admin-html-page($title as xs:string, $head, $content) { 
+declare function view-tools:create-wp-admin-html-page($title as xs:string, $head, $content) as item()* { 
     let $pagebody := (
     <div class="container">
 		<div class="row">
