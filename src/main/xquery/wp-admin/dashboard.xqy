@@ -12,7 +12,7 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 
 declare variable $message := xdmp:get-request-field("msg");
 
-view-tools:create-wp-admin-html-page("Dashboard", (),        
+view-tools:create-wp-admin-html-page("Admin Dashboard", (),        
     <div id="dashboard" class="row">     
         {if (not(empty(xdmp:get-server-field("filename")))) 
         then (view-tools:info-notification( (<strong>Filename is currently set: </strong> || xdmp:get-server-field("filename")), false() ) )
