@@ -1,8 +1,10 @@
 xquery version "1.0-ml";
 
-import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
+(: import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy"; :)
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 (: import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; :)
+
+declare namespace xdmp = "http://marklogic.com/xdmp";
 
 declare namespace excerpt = "http://wordpress.org/export/1.2/excerpt/";
 declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 

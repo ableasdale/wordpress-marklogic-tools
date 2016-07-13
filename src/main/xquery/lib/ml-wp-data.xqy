@@ -22,18 +22,18 @@ declare function ml-wp-data:get-terms() as document-node()* { fn:collection("ter
 declare function ml-wp-data:get-categories() as document-node()* { fn:collection("categories") };
 declare function ml-wp-data:get-tags() as document-node()* { fn:collection("tags") };
 
-declare function ml-wp-data:get-items() {
+declare function ml-wp-data:get-items() as document-node()* {
   for $x in fn:collection("items")
   order by number($x//wp:post_id) descending  (: ascending :)
   return $x
 };
 
-declare function ml-wp-data:range-query($type as xs:string) {
+declare function ml-wp-data:range-query($type as xs:string) as xs:anyAtomicType* {
     cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"), ml-wp-data:status-query($type)) 
 };
 
 (: TODO - refactor query out or parameterise - probably can be used in a lot of places :)
-declare function ml-wp-data:range-query-recent-posts(){
+declare function ml-wp-data:range-query-recent-posts() as document-node()* {
     cts:search(doc(),
         cts:and-query((
             cts:element-value-query(xs:QName("wp:post_type"), "post"),
@@ -117,7 +117,7 @@ declare function ml-wp-data:get-author-first-and-last-name-from-username($name a
     else ("TODO - NOAUTHOR")
 };
 
-declare function ml-wp-data:get-posts-by-authorname($username as xs:string) {
+declare function ml-wp-data:get-posts-by-authorname($username as xs:string) as document-node()* {
   cts:search(doc()/item, 
         cts:and-query(( cts:element-value-query(xs:QName("dc:creator"), string($username)), cts:collection-query(("items")) ))              
     )
@@ -127,7 +127,7 @@ declare function ml-wp-data:get-user-first-and-last-name-from-username($name as 
     ml-wp-data:get-author-first-and-last-name-from-username($name)
 };
 
-declare function ml-wp-data:new-post-xml($id as xs:double, $status as xs:string, $title as xs:string, $content as xs:string){
+declare function ml-wp-data:new-post-xml($id as xs:double, $status as xs:string, $title as xs:string, $content as xs:string) as document-node() {
 (:  figure out how to deal with users - I currently have no user code in place and deal with the post date - is it the point where the publish button is pressed?  I suspect so... :)
 (: first id you edit is 4; second is 6; - HOW? :)
 (: The process (how WP does it)
@@ -205,7 +205,8 @@ declare function ml-wp-data:get-media-attachment-metadata($id as xs:string) as i
 };
 
 (: As the XML text() containing this metadata is serialised PHP, there's no easy way of parsing it - using tokenize and grabbing the values I need for now :)
-declare function ml-wp-data:get-media-width-and-height($id as xs:string){
+(: TODO - I think this is redundant - we can serialize and unserialize the PHP array using JavaScript :)
+declare function ml-wp-data:get-media-width-and-height($id as xs:string) {
   let $i := tokenize(tokenize(ml-wp-data:get-media-attachment-metadata($id),'\{')[2],";")
   return (substring-after($i[2],":"), substring-after($i[4],":"))
 };

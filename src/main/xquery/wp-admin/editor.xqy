@@ -4,6 +4,8 @@ declare namespace wp = "http://wordpress.org/export/1.2/";
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 
 
+declare namespace xdmp = "http://marklogic.com/xdmp";
+
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
