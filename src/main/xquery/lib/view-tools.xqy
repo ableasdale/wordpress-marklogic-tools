@@ -5,13 +5,16 @@ module namespace view-tools = "http://www.xmlmachines.com/view-tools";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
+declare namespace cts = "http://marklogic.com/cts";
+declare namespace xdmp = "http://marklogic.com/xdmp";
+
 declare namespace excerpt = "http://wordpress.org/export/1.2/excerpt/";
 declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 
 declare namespace wfw = "http://wellformedweb.org/CommentAPI/"; 
 declare namespace dc = "http://purl.org/dc/elements/1.1/";
 declare namespace wp = "http://wordpress.org/export/1.2/";
 
-declare function view-tools:create-html-page($head, $content) {
+declare function view-tools:create-html-page( $head as element(head), $content as element(div) ) as item()+ {
 xdmp:set-response-content-type("text/html; charset=utf-8"),
 ("<!DOCTYPE html>",
 <html lang="en">
@@ -32,7 +35,7 @@ declare function view-tools:footer() as element(footer) {
     </footer>    
 };
 
-declare function view-tools:javascript-footer(){
+declare function view-tools:javascript-footer() as element(script)+ {
     (
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js">{" "}</script>,
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">{" "}</script>,
@@ -48,7 +51,7 @@ declare function view-tools:javascript-footer(){
     )
 };
 
-declare function view-tools:create-wp-admin-html-head($title as xs:string, $additional-content) {
+declare function view-tools:create-wp-admin-html-head($title as xs:string, $additional-content as item()?) as element(head) {
 (
 <head>
     <meta charset="utf-8" />
@@ -66,7 +69,7 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
 )
 };
 
-declare function view-tools:summary-widget($title as xs:string) {
+declare function view-tools:summary-widget($title as xs:string) as element(div) {
 <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">{$title}</h3>
@@ -84,7 +87,7 @@ declare function view-tools:summary-widget($title as xs:string) {
 </div>
 };
 
-declare function view-tools:create-range-frequency-badges($href as xs:string, $type as xs:string){
+declare function view-tools:create-range-frequency-badges($href as xs:string, $type as xs:string) as element(a)* {
     for $i in ml-wp-data:range-query($type)
     return view-tools:create-badge-link( concat($href,"?filter=",$i), concat(cts:frequency($i), " ", $i))
 };
@@ -93,7 +96,7 @@ declare function view-tools:get-export-directories() {
     for $i in $consts:DIRECTORIES return xdmp:filesystem-directory($i)
 };
 
-declare function view-tools:get-tiny-mce-js(){
+declare function view-tools:get-tiny-mce-js() as element(script)+ {
     (<script src="https://tinymce.cachefly.net/4.3/tinymce.min.js">{" "}</script>,
     <script language="javascript" type="text/javascript">
         <![CDATA[tinymce.init({

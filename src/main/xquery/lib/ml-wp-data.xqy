@@ -6,6 +6,9 @@ xquery version "1.0-ml";
 
 module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data";
 
+declare namespace cts = "http://marklogic.com/cts";
+declare namespace xdmp = "http://marklogic.com/xdmp";
+
 declare namespace excerpt = "http://wordpress.org/export/1.2/excerpt/";
 declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 
 declare namespace wfw = "http://wellformedweb.org/CommentAPI/"; 
