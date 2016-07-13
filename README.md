@@ -25,12 +25,39 @@ Requires MarkLogic 8 and a database (currently configured to use Documents) with
 
 Set the values below for your database, default application port and configure the module path to the project (replacing /ROOT/PATH/TO with the location on your filesystem where this project is checked out). 
 
+#### Database ####
+
+```xquery
+xquery version "1.0-ml";
+
+import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
+import module namespace info = "http://marklogic.com/appservices/infostudio" at "/MarkLogic/appservices/infostudio/info.xqy";
+
+declare variable $DATABASE as xs:string := "ML-WordPress";
+
+let $_ := info:database-create($DATABASE, 2)
+return
+
+admin:save-configuration(
+  admin:database-add-range-element-index( 
+    admin:get-configuration(), 
+    xdmp:database($DATABASE), 
+    (
+      admin:database-range-element-index("string", "http://wordpress.org/export/1.2/", "status", "http://marklogic.com/collation/codepoint", fn:false(), "ignore"),
+      admin:database-range-element-index("string", "http://wordpress.org/export/1.2/", "post_type", "http://marklogic.com/collation/codepoint", fn:false(), "ignore")
+    )
+  )
+)
+
+```
+#### Application Server ####
+
 ```xquery
 xquery version "1.0-ml";
 
 import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
 
-declare variable $DATABASE as xs:string := "Documents";
+declare variable $DATABASE as xs:string := "ML-WordPress";
 declare variable $PORT as xs:unsignedLong := 8003;
 declare variable $PATH := "/ROOT/PATH/TO/wordpress-marklogic-tools/src/main/xquery";
 
@@ -46,6 +73,7 @@ declare function local:create-http-application-server() {
 };
 
 local:create-http-application-server()
+
 ```
 
 ### Configure ###
@@ -54,4 +82,18 @@ Modify: **\wordpress-marklogic-tools\src\main\xquery\lib\consts.xqy** to set the
 
 ```xquery
 declare variable $DIRECTORIES as xs:string+ := ("/ROOT/PATH/TO/wordpress-marklogic-tools/sample-exports");
+```
+
+### Uninstall ###
+
+```xquery
+xquery version "1.0-ml";
+
+import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
+import module namespace info = "http://marklogic.com/appservices/infostudio" at "/MarkLogic/appservices/infostudio/info.xqy";
+
+declare variable $DATABASE as xs:string := "ML-WordPress";
+
+info:database-delete($DATABASE)
+
 ```
