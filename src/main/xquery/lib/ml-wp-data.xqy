@@ -41,10 +41,23 @@ declare function ml-wp-data:get-items() {
   return $x
 };
 
+declare function ml-wp-data:range-query($type as xs:string) {
+    for $i in cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"), 
+        ml-wp-data:status-query($type)) 
+    return ($i, cts:frequency($i))
+};
+
+declare function ml-wp-data:status-query($type as xs:string) as cts:query {
+    cts:and-query(( 
+        cts:element-value-query(xs:QName("wp:post_type"), $type), 
+        cts:collection-query(("items")) 
+    ))
+};
+
 declare function ml-wp-data:type-query($type as xs:string, $estimate as xs:boolean) as item()* {
     if ($estimate)
-    then (xdmp:estimate(cts:search(fn:doc(), cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), $type), cts:collection-query(("items")) )) )) )
-    else (cts:search(fn:doc(), cts:and-query(( cts:element-value-query(xs:QName("wp:post_type"), $type), cts:collection-query(("items")) )) ))
+    then (xdmp:estimate( cts:search(fn:doc(), ml-wp-data:status-query($type)) )) 
+    else (cts:search(fn:doc(), cts:search(fn:doc(), ml-wp-data:status-query($type)) ))
 };
 
 declare function ml-wp-data:get-media() {ml-wp-data:type-query("attachment", false())};
