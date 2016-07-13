@@ -54,8 +54,8 @@ declare function ml-wp-data:status-query($type as xs:string) as cts:query {
 
 declare function ml-wp-data:type-query($type as xs:string, $estimate as xs:boolean) as item()* {
     if ($estimate)
-    then (xdmp:estimate( cts:search(fn:doc(), ml-wp-data:status-query($type)) )) 
-    else (cts:search(fn:doc(), cts:search(fn:doc(), ml-wp-data:status-query($type)) ))
+    then ( xdmp:estimate( cts:search(fn:doc(), ml-wp-data:status-query($type)) )) 
+    else ( cts:search(fn:doc(), ml-wp-data:status-query($type)) )
 };
 
 declare function ml-wp-data:get-media() {ml-wp-data:type-query("attachment", false())};
