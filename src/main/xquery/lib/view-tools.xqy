@@ -40,7 +40,7 @@ declare function view-tools:javascript-footer(){
     <script><![CDATA[
         
         $(".date").each(function(){ 
-            console.log($(this).text());
+            //debug console.log($(this).text());
 
             //format it
             var d = moment($(this).text(), "ddd, DD MMM YYYY HH:mm:ss ZZ");
@@ -310,10 +310,6 @@ declare function view-tools:build-document-state-dropdown($state as xs:string) {
     </select>
 };
 
-(:
-<span class="glyphicon glyphicon-tag"></span>
-:)
-
 declare function view-tools:create-thead-element($headers as xs:string*) as element(thead) {
     element thead {
         element tr {
@@ -327,7 +323,7 @@ declare function view-tools:create-thead-element($headers as xs:string*) as elem
 (: "Widget" code below :)
 
 declare function view-tools:recently-published-widget($num as xs:integer) {
-    element ul {
+    element ul {attribute class {"list-unstyled"},
         for $i in subsequence(ml-wp-data:range-query-recent-posts(), 1, $num)
         return element li {
                 element span {attribute class {"text-muted pad-right date"}, $i/item/pubDate}, 
