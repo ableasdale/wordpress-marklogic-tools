@@ -63,17 +63,20 @@ declare function view-tools:summary-widget($title as xs:string) {
     </div>
     <div class="panel-body">
     {
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), " Posts"), "glyphicon glyphicon-pushpin")},
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
-        element p {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
+        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), " Posts"), "glyphicon glyphicon-pushpin")},
+        element p {view-tools:create-range-frequency-badges("/wp-admin/posts.xqy", "post")},
+        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/pages.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
+        element p {view-tools:create-range-frequency-badges("/wp-admin/pages.xqy", "pages")},
+        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
+        (: TODO - for comments we will need some custom code element p {view-tools:create-range-frequency-badges("/wp-admin/comments.xqy", "comments")} :)
     }
     </div>
 </div>
 };
 
-declare function view-tools:create-range-frequency-badges($type as xs:string){
+declare function view-tools:create-range-frequency-badges($href as xs:string, $type as xs:string){
     for $i in ml-wp-data:range-query($type)
-    return view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(cts:frequency($i), " ", $i), "glyphicon glyphicon-comment")
+    return view-tools:create-badge-link($href, concat(cts:frequency($i), " ", $i))
 };
 
 declare function view-tools:get-export-directories() { 
@@ -265,7 +268,7 @@ declare function view-tools:create-tag-badge-link($href as xs:string, $linktext 
 };
 
 declare function view-tools:create-glyphicon-badge-link($href as xs:string, $linktext as xs:string, $glyphicon as xs:string) as element(a) {
-    element a {attribute href {$href}, element span {attribute class {"badge"}, element span {attribute class {$glyphicon}, " "}," ",$linktext}}
+    element a {attribute href {$href}, element span {attribute class {"label label-primary"}, element span {attribute class {$glyphicon}, " "}," ",$linktext}}
 };
 
 declare function view-tools:build-document-state-dropdown($state as xs:string) {
