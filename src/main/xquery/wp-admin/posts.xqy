@@ -6,7 +6,7 @@ declare namespace dc = "http://purl.org/dc/elements/1.1/";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
-declare variable $filter as xs:string := xdmp:get-request-field("filter");
+declare variable $filter as xs:string := xdmp:get-request-field("filter","");
 
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="row">
@@ -31,7 +31,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
             <!-- TODO - and parameterise this  -->
             <tbody>
                 {
-                    for $x in ml-wp-data:get-posts()/*
+                    for $x in ml-wp-data:get-posts($filter)/*
                     (: TODO - filter :)
                     order by number($x/wp:post_id) descending
                     return element tr {

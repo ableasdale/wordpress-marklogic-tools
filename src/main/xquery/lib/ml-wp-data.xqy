@@ -60,7 +60,7 @@ declare function ml-wp-data:type-query($type as xs:string, $estimate as xs:boole
 
 declare function ml-wp-data:get-media() {ml-wp-data:type-query("attachment", false())};
 declare function ml-wp-data:get-pages() {ml-wp-data:type-query("page", false())};
-declare function ml-wp-data:get-posts() {ml-wp-data:type-query("post", false())};
+declare function ml-wp-data:get-posts($filter as xs:string?) {ml-wp-data:type-query("post", false())};
 declare function ml-wp-data:get-total-media() {ml-wp-data:type-query("attachment", true())};
 declare function ml-wp-data:get-total-pages() {ml-wp-data:type-query("page", true())};
 declare function ml-wp-data:get-total-posts() {ml-wp-data:type-query("post", true())};
