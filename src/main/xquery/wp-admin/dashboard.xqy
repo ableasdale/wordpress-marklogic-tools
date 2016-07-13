@@ -27,7 +27,7 @@ view-tools:create-wp-admin-html-page("Admin Dashboard", (),
         )
         else ()}
         <div class="row">
-            <div class="col-sm-4">    
+            <div class="col-sm-5">    
                 {view-tools:summary-widget("At a Glance")}    
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -42,7 +42,7 @@ view-tools:create-wp-admin-html-page("Admin Dashboard", (),
                 </div>
             </div> 
             
-            <div class="col-sm-8">
+            <div class="col-sm-7">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="panel-title">Quick Draft</h3>

@@ -263,7 +263,7 @@ declare function view-tools:create-tag-badge-link($href as xs:string, $linktext 
 };
 
 declare function view-tools:create-glyphicon-badge-link($href as xs:string, $linktext as xs:string, $glyphicon as xs:string) as element(a) {
-    element a {attribute href {$href}, element span {attribute class {"label label-primary"}, element span {attribute class {$glyphicon}, " "}," ",$linktext}}
+    element a {attribute href {$href}, element span {attribute class {"label label-primary mgn-right"}, element span {attribute class {$glyphicon}, " "}," ",$linktext}}
 };
 
 declare function view-tools:build-document-state-dropdown($state as xs:string) {
