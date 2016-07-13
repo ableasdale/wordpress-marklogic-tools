@@ -69,24 +69,6 @@ declare function view-tools:create-wp-admin-html-head($title as xs:string, $addi
 )
 };
 
-declare function view-tools:summary-widget($title as xs:string) as element(div) {
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{$title}</h3>
-    </div>
-    <div class="panel-body">
-    {
-        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), " Posts"), "glyphicon glyphicon-pushpin")},
-        element p {attribute class {"counts"},view-tools:create-range-frequency-badges("/wp-admin/posts.xqy", "post")},
-        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/pages.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
-        element p {attribute class {"counts"},view-tools:create-range-frequency-badges("/wp-admin/pages.xqy", "pages")},
-        element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
-        (: TODO - for comments we will need some custom code element p {view-tools:create-range-frequency-badges("/wp-admin/comments.xqy", "comments")} :)
-    }
-    </div>
-</div>
-};
-
 declare function view-tools:create-range-frequency-badges($href as xs:string, $type as xs:string) as element(a)* {
     for $i in ml-wp-data:range-query($type)
     return view-tools:create-badge-link( concat($href,"?filter=",$i), concat(cts:frequency($i), " ", $i))
@@ -143,86 +125,86 @@ declare function view-tools:create-input-element($type as xs:string, $class as x
 (: declare function view-tools:create-navbar-links - TODO - this needs to be done when the rewriter is hooked up :)
 
 declare function view-tools:wp-admin-navigation() as element(div) {
-        <div class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <img src="/assets/images/wordpress-logo-32.png"/>          
-                    <img id="nav-logo" src="/assets/images/marklogic.png"/>                              
-                </div>
-                
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <!-- TODO - add class="active" to active page -->
-                        <li><a href="/wp-admin/dashboard.xqy">Dashboard</a></li>
-                        
-                        
-                        <li class="dropdown">
-                            <a href="/wp-admin/posts.xqy" class="dropdown-toggle" data-toggle="dropdown">Posts <span class="caret"></span></a>
-                       
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/wp-admin/posts.xqy">All Posts</a></li>
-                                <li><a href="/wp-admin/editor.xqy">Add New</a></li>
-                                <li><a href="/wp-admin/categories.xqy">Categories</a></li>
-                                <li><a href="/wp-admin/tags.xqy">Tags</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- TODO - paginate media view to save stessing the webserver by requesting *all* images stored in WP -->
-                        <li class="dropdown">
-                            <a href="/wp-admin/media.xqy" class="dropdown-toggle" data-toggle="dropdown">Media <span class="caret"></span></a>                       
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/wp-admin/media.xqy">Library</a></li>
-                                <li><a href="/wp-admin/upload.xqy">Add New</a></li>                                
-                            </ul>
-                        </li>
-
-                        <!-- TODO - remember to wire up actives when rest rewriter is hooked up <li class="active"><a href="/wp-admin/media.xqy">Media</a></li> -->
-                        
-                        
-                        <li><a href="/wp-admin/pages.xqy">Pages</a></li>
-                        <li><a href="/wp-admin/comments.xqy">Comments</a></li>
-                        <li><a href="/wp-admin/users.xqy">Users</a></li>
-                        <!-- li><a href="#tools">Tools</a></li -->
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/wp-admin/import.xqy">Import</a></li>
-                                <li><a href="/wp-admin/export.xqy">Export to Wordpress</a></li>
-                                <!-- li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li -->
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/wp-admin/settings-general.xqy">General</a></li>
-                                <!-- li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li -->
-                            </ul>
-                        </li>       
-                    </ul>
-                    <form action="/wp-admin/search.xqy" method="post" class="navbar-form navbar-left" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control sm" name="term" placeholder="Search" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                         </div>
-                    </form>
-                </div>  
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="/assets/images/wordpress-logo-32.png"/>          
+                <img id="nav-logo" src="/assets/images/marklogic.png"/>                              
             </div>
+            
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!-- TODO - add class="active" to active page -->
+                    <li><a href="/wp-admin/dashboard.xqy">Dashboard</a></li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="/wp-admin/posts.xqy" class="dropdown-toggle" data-toggle="dropdown">Posts <span class="caret"></span></a>
+                    
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/wp-admin/posts.xqy">All Posts</a></li>
+                            <li><a href="/wp-admin/editor.xqy">Add New</a></li>
+                            <li><a href="/wp-admin/categories.xqy">Categories</a></li>
+                            <li><a href="/wp-admin/tags.xqy">Tags</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- TODO - paginate media view to save stessing the webserver by requesting *all* images stored in WP -->
+                    <li class="dropdown">
+                        <a href="/wp-admin/media.xqy" class="dropdown-toggle" data-toggle="dropdown">Media <span class="caret"></span></a>                       
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/wp-admin/media.xqy">Library</a></li>
+                            <li><a href="/wp-admin/upload.xqy">Add New</a></li>                                
+                        </ul>
+                    </li>
+
+                    <!-- TODO - remember to wire up actives when rest rewriter is hooked up <li class="active"><a href="/wp-admin/media.xqy">Media</a></li> -->
+                    
+                    
+                    <li><a href="/wp-admin/pages.xqy">Pages</a></li>
+                    <li><a href="/wp-admin/comments.xqy">Comments</a></li>
+                    <li><a href="/wp-admin/users.xqy">Users</a></li>
+                    <!-- li><a href="#tools">Tools</a></li -->
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/wp-admin/import.xqy">Import</a></li>
+                            <li><a href="/wp-admin/export.xqy">Export to Wordpress</a></li>
+                            <!-- li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li -->
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/wp-admin/settings-general.xqy">General</a></li>
+                            <!-- li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li -->
+                        </ul>
+                    </li>       
+                </ul>
+                <form action="/wp-admin/search.xqy" method="post" class="navbar-form navbar-left" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control sm" name="term" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                        </div>
+                </form>
+            </div>  
         </div>
+    </div>
 };
 
 declare private function view-tools:alert-user($level, $message, $is-dismissible) {
@@ -309,6 +291,24 @@ declare function view-tools:create-thead-element($headers as xs:string*) as elem
 
 (: "Widget" code below :)
 
+declare function view-tools:summary-widget($title as xs:string) as element(div) {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title">{$title}</h3>
+        </div>
+        <div class="panel-body">
+        {
+            element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), ""), "glyphicon glyphicon-pushpin mgn-right"), " Posts"},
+            element p {attribute class {"counts"},view-tools:create-range-frequency-badges("/wp-admin/posts.xqy", "post")},
+            element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/pages.xqy", concat(ml-wp-data:get-total-pages(), ""), "glyphicon glyphicon-book mgn-right"), " Pages"},
+            element p {attribute class {"counts"},view-tools:create-range-frequency-badges("/wp-admin/pages.xqy", "pages")},
+            element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), ""), "glyphicon glyphicon-comment mgn-right"), " Comments"}
+            (: TODO - for comments we will need some custom code element p {view-tools:create-range-frequency-badges("/wp-admin/comments.xqy", "comments")} :)
+        }
+        </div>
+    </div>
+};
+
 declare function view-tools:recently-published-widget($num as xs:integer) {
     element ul {attribute class {"list-unstyled"},
         for $i in subsequence(ml-wp-data:range-query-recent-posts(), 1, $num)
@@ -316,4 +316,8 @@ declare function view-tools:recently-published-widget($num as xs:integer) {
                 element span {attribute class {"text-muted pad-right date"}, $i/item/pubDate}, 
                 view-tools:create-href-link(fn:concat("/wp-admin/editor.xqy?id=", xs:string($i/item/wp:post_id)), xs:string($i/item/title))}
     }
+};
+
+declare function view-tools:recent-comments($num as xs:integer) {
+    element p {"TODO"}
 };
