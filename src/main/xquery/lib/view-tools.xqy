@@ -64,7 +64,7 @@ declare function view-tools:summary-widget($title as xs:string) {
     <div class="panel-body">
     {
         element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-posts(), " Posts"), "glyphicon glyphicon-pushpin")},
-        element p {view-tools:create-range-frequency-badges("/wp-admin/posts.xqy", "post")},
+        element p {attribute class {"counts"},view-tools:create-range-frequency-badges("/wp-admin/posts.xqy", "post")},
         element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/pages.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
         element p {view-tools:create-range-frequency-badges("/wp-admin/pages.xqy", "pages")},
         element h4 {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
