@@ -76,7 +76,7 @@ declare function view-tools:summary-widget($title as xs:string) {
 
 declare function view-tools:create-range-frequency-badges($href as xs:string, $type as xs:string){
     for $i in ml-wp-data:range-query($type)
-    return view-tools:create-badge-link($href, concat(cts:frequency($i), " ", $i))
+    return view-tools:create-badge-link( concat($href,"?filter=",$i), concat(cts:frequency($i), " ", $i))
 };
 
 declare function view-tools:get-export-directories() { 

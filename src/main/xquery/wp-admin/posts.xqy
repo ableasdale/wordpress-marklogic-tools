@@ -6,6 +6,8 @@ declare namespace dc = "http://purl.org/dc/elements/1.1/";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace view-tools = "http://www.xmlmachines.com/view-tools" at "/lib/view-tools.xqy";
 
+declare variable $filter as xs:string := xdmp:get-request-field("filter");
+
 view-tools:create-wp-admin-html-page("Posts", (),
     <div id="posts" class="row">
         <h4>TODO filter by category, all dates, bulk actions etc...</h4>
@@ -30,6 +32,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
             <tbody>
                 {
                     for $x in ml-wp-data:get-posts()/*
+                    (: TODO - filter :)
                     order by number($x/wp:post_id) descending
                     return element tr {
                         if (fn:not($x/wp:status eq "publish"))
