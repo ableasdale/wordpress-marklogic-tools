@@ -50,6 +50,7 @@ view-tools:create-wp-admin-html-page("Editor", view-tools:get-tiny-mce-js(),
                     </div>
                     
                </div>
+                <p><strong>Debug: </strong> {xdmp:node-uri($item)}</p>
                 <p>TODO: No permalink impl, No Media Library integration, No HTML Source view (as tab that can be toggled)</p>
     
                 <div class="form-group">

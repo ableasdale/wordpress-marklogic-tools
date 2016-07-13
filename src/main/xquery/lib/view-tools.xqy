@@ -5,6 +5,12 @@ module namespace view-tools = "http://www.xmlmachines.com/view-tools";
 import module namespace ml-wp-data = "http://www.xmlmachines.com/ml-wp-data" at "/lib/ml-wp-data.xqy";
 import module namespace consts = "http://www.xmlmachines.com/consts" at "/lib/consts.xqy"; 
 
+declare namespace excerpt = "http://wordpress.org/export/1.2/excerpt/";
+declare namespace content = "http://purl.org/rss/1.0/modules/content/"; 
+declare namespace wfw = "http://wellformedweb.org/CommentAPI/"; 
+declare namespace dc = "http://purl.org/dc/elements/1.1/";
+declare namespace wp = "http://wordpress.org/export/1.2/";
+
 declare function view-tools:create-html-page($head, $content) {
 xdmp:set-response-content-type("text/html; charset=utf-8"),
 ("<!DOCTYPE html>",
@@ -32,8 +38,28 @@ declare function view-tools:javascript-footer(){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">{" "}</script>,
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">{" "}</script>,
     <script><![CDATA[
-    // TODO - formatting..
-    moment().format();
+        
+        $(".date").each(function(){ 
+            console.log($(this).text());
+
+            //format it
+            var d = moment($(this).text(), "ddd, DD MMM YYYY HH:mm:ss ZZ");
+
+            //replace it
+            $(this).html(d.format("MMM Do YYYY, h:mm a"));
+            // dddd, MMMM Do YYYY, h:mm:ss a
+            //return moment($(this).text(), 'ddd, DD MMM YYYY HH:mm:ss ZZ').format('MMMM Do YYYY, h:mm:ss a')
+              });
+
+/*
+        $(".date").html(function(index, value) {
+            console.log(value);
+            return moment(value, 'ddd, DD MMM YYYY HH:mm:ss ZZ').format('MMMM Do YYYY, h:mm:ss a');
+        }); */
+        
+        // moment().format('MMMM Do YYYY, h:mm:ss a')
+        //"dddd, MMMM Do YYYY, h:mm:ss a"
+        // TODO - formatting..moment().format();
     ]]></script>
     )
 };
@@ -297,3 +323,14 @@ declare function view-tools:create-thead-element($headers as xs:string*) as elem
     }
 };
 
+
+(: "Widget" code below :)
+
+declare function view-tools:recently-published-widget($num as xs:integer) {
+    element ul {
+        for $i in subsequence(ml-wp-data:range-query-recent-posts(), 1, $num)
+        return element li {
+                element span {attribute class {"text-muted pad-right date"}, $i/item/pubDate}, 
+                view-tools:create-href-link(fn:concat("/wp-admin/editor.xqy?id=", xs:string($i/item/wp:post_id)), xs:string($i/item/title))}
+    }
+};

@@ -45,6 +45,17 @@ declare function ml-wp-data:range-query($type as xs:string) {
     cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"), ml-wp-data:status-query($type)) 
 };
 
+(: TODO - refactor query out or parameterise - probably can be used in a lot of places :)
+declare function ml-wp-data:range-query-recent-posts(){
+cts:search(doc(),
+  cts:and-query((
+    cts:element-value-query(xs:QName("wp:post_type"), "post"),
+    cts:element-value-query(xs:QName("wp:status"), "publish")
+  )),
+  ( cts:index-order(cts:element-reference(xs:QName("wp:post_id")), "descending") )
+)
+};
+
 declare function ml-wp-data:status-query($type as xs:string) as cts:query {
     cts:and-query(( 
         cts:element-value-query(xs:QName("wp:post_type"), $type), 

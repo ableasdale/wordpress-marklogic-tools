@@ -44,7 +44,8 @@ admin:save-configuration(
     xdmp:database($DATABASE), 
     (
       admin:database-range-element-index("string", "http://wordpress.org/export/1.2/", "status", "http://marklogic.com/collation/codepoint", fn:false(), "ignore"),
-      admin:database-range-element-index("string", "http://wordpress.org/export/1.2/", "post_type", "http://marklogic.com/collation/codepoint", fn:false(), "ignore")
+      admin:database-range-element-index("string", "http://wordpress.org/export/1.2/", "post_type", "http://marklogic.com/collation/codepoint", fn:false(), "ignore"),
+      admin:database-range-element-index("int", "http://wordpress.org/export/1.2/", "post_id", (), fn:false(), "ignore")
     )
   )
 )

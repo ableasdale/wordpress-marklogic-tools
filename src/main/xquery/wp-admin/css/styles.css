@@ -73,6 +73,7 @@ html {
 #nav-logo {margin: 0.65em 0.7em 0 0.7em;}
 
 /* General CSS rules*/
-td.tags span.badge, p.counts span.badge {margin-right: 0.5em;}
+td.tags span.badge, p.counts span.badge, .mgn-right {margin-right: 0.5em;}
+.pad-right {padding-right: 0.5em;}
 .mr1e {margin-right:1em;}
 .req {color: red;}

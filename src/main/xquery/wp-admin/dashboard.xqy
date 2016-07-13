@@ -32,8 +32,9 @@ view-tools:create-wp-admin-html-page("Admin Dashboard", (),
                       <h3 class="panel-title">Activity</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Recently published</p>
-                        <p>Comments</p>
+                        <h4>Recently published</h4>
+                        {view-tools:recently-published-widget(5)}
+                        <h4>Comments</h4>
                     </div>
                 </div>
             </div> 
