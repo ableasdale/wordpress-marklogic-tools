@@ -51,7 +51,7 @@ view-tools:create-wp-admin-html-page("Posts", (),
                             return $strs
                         },
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/comments.xqy?id=","TODO"), string(fn:count($x/wp:comment)))},
-                        element td {string($x/wp:post_date)}
+                        element td {attribute class {"date"}, xs:string($x/pubDate)}
                     }   
                 }
             </tbody>

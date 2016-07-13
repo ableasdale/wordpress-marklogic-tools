@@ -38,28 +38,12 @@ declare function view-tools:javascript-footer(){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">{" "}</script>,
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">{" "}</script>,
     <script><![CDATA[
-        
         $(".date").each(function(){ 
-            //debug console.log($(this).text());
-
-            //format it
-            var d = moment($(this).text(), "ddd, DD MMM YYYY HH:mm:ss ZZ");
-
-            //replace it
-            $(this).html(d.format("MMM Do YYYY, h:mm a"));
+            $(this).html(moment($(this).text(), "ddd, DD MMM YYYY HH:mm:ss ZZ").format("MMM Do YYYY, h:mm a"));
             // dddd, MMMM Do YYYY, h:mm:ss a
-            //return moment($(this).text(), 'ddd, DD MMM YYYY HH:mm:ss ZZ').format('MMMM Do YYYY, h:mm:ss a')
-              });
-
-/*
-        $(".date").html(function(index, value) {
-            console.log(value);
-            return moment(value, 'ddd, DD MMM YYYY HH:mm:ss ZZ').format('MMMM Do YYYY, h:mm:ss a');
-        }); */
-        
-        // moment().format('MMMM Do YYYY, h:mm:ss a')
-        //"dddd, MMMM Do YYYY, h:mm:ss a"
-        // TODO - formatting..moment().format();
+            // 'MMMM Do YYYY, h:mm:ss a'
+        });        
+        // TODO - other date formatting?
     ]]></script>
     )
 };

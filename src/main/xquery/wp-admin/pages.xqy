@@ -11,9 +11,8 @@ view-tools:create-wp-admin-html-page("Pages", (),
         <h3>TODO filter by all dates, bulk actions etc...</h3>
         <table class="table table-striped table-bordered">
             {view-tools:create-thead-element(("ID", "Title", "Status", "Author", "Comments", "Date"))}
-            (: TODO - can we further parameterise this? :)
             <tbody>
-                {
+                {   (: TODO - can we further parameterise this? :)
                     for $x in ml-wp-data:get-pages()/*
                     order by number($x/wp:post_id) descending
                     return element tr {
@@ -23,7 +22,7 @@ view-tools:create-wp-admin-html-page("Pages", (),
                        (: TODO - get author first and suranme from dc:creator:::  element td {string($x/wp:author_first_name) || " " || string($x/wp:author_last_name)}, :)
                         element td {string($x/dc:creator)},
                         element td {attribute class {"text-center"}, view-tools:create-badge-link(fn:concat("/wp-admin/editor.xqy?id=", string(fn:count($x/wp:comment))), string(fn:count($x/wp:comment)))},
-                        element td {string($x/wp:post_date)}
+                        element td {attribute class {"date"}, xs:string($x/pubDate)}
                     }   
                 }
             </tbody>                
