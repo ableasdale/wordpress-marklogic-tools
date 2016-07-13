@@ -67,9 +67,13 @@ declare function view-tools:summary-widget($title as xs:string) {
         element p {view-tools:create-glyphicon-badge-link("/wp-admin/posts.xqy", concat(ml-wp-data:get-total-pages(), " Pages"), "glyphicon glyphicon-book")},
         element p {view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(count(ml-wp-data:get-comments()), " Comments"), "glyphicon glyphicon-comment")}
     }
-        <!-- p>TODO - how many published/pending etc..</p -->     
     </div>
 </div>
+};
+
+declare function view-tools:create-range-frequency-badges($type as xs:string){
+    for $i in ml-wp-data:range-query($type)
+    return view-tools:create-glyphicon-badge-link("/wp-admin/comments.xqy", concat(cts:frequency($i), " ", $i), "glyphicon glyphicon-comment")
 };
 
 declare function view-tools:get-export-directories() { 

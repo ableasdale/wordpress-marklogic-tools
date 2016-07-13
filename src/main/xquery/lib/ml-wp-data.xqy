@@ -42,9 +42,7 @@ declare function ml-wp-data:get-items() {
 };
 
 declare function ml-wp-data:range-query($type as xs:string) {
-    for $i in cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"), 
-        ml-wp-data:status-query($type)) 
-    return ($i, cts:frequency($i))
+    cts:element-values(xs:QName("wp:status"), (), ("collation=http://marklogic.com/collation/codepoint"), ml-wp-data:status-query($type)) 
 };
 
 declare function ml-wp-data:status-query($type as xs:string) as cts:query {
