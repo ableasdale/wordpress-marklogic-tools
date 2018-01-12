@@ -79,7 +79,7 @@ declare function view-tools:get-export-directories() as element(dir:directory)* 
 };
 
 declare function view-tools:get-tiny-mce-js() as element(script)+ {
-    (<script src="https://tinymce.cachefly.net/4.3/tinymce.min.js">{" "}</script>,
+    (<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/tinymce.min.js">{" "}</script>,
     <script language="javascript" type="text/javascript">
         <![CDATA[tinymce.init({
             selector : 'textarea', 

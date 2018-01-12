@@ -1,4 +1,4 @@
-#MLPress: WordPress, MarkLogic style#
+# MLPress: WordPress, MarkLogic style
 
 Imagine what it would be like to have a powerful blog application like WordPress built on a modern, highly scalable NoSQL document database like MarkLogic... 
 
